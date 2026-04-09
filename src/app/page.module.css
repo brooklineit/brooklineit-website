@@ -1,0 +1,81 @@
+.hero { padding: 160px 0 100px; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-600);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--green-400); }
+.h1 {
+  font-family: var(--serif); font-size: clamp(44px, 6vw, 72px);
+  font-weight: 700; color: var(--warm-800);
+  line-height: 1.08; letter-spacing: -0.035em; max-width: 720px; margin-bottom: 28px;
+}
+.h1 span { color: var(--green-600); }
+.desc { font-size: 18px; color: var(--warm-400); max-width: 560px; line-height: 1.7; margin-bottom: 40px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.strip {
+  border-top: 1px solid var(--warm-100); border-bottom: 1px solid var(--warm-100);
+  padding: 20px 0; background: var(--white);
+}
+.stripInner { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.stripItem {
+  font-size: 13px; font-weight: 600; color: var(--warm-300);
+  letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+}
+
+.svcGrid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+  background: var(--warm-100); border: 1px solid var(--warm-100);
+  border-radius: 16px; overflow: hidden;
+}
+.svc {
+  background: var(--white); padding: 36px; transition: all 0.3s;
+  position: relative; text-decoration: none; display: block;
+}
+.svc:hover { background: var(--warm-50); }
+.svcNum { font-family: var(--mono); font-size: 11px; color: var(--warm-300); margin-bottom: 16px; }
+.svc h3 { font-family: var(--sans); font-size: 18px; font-weight: 700; color: var(--warm-800); margin-bottom: 10px; }
+.svc p { font-size: 14px; color: var(--warm-400); line-height: 1.65; }
+.svcArrow {
+  position: absolute; top: 36px; right: 36px; font-size: 18px;
+  color: var(--warm-200); transition: all 0.3s;
+}
+.svc:hover .svcArrow { color: var(--green-500); transform: translateX(4px); }
+
+.diff { padding: 100px 0; background: var(--warm-800); }
+.diffGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.diffH2 {
+  font-family: var(--serif); font-size: clamp(30px, 4vw, 44px);
+  font-weight: 700; color: white; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px;
+}
+.diffP { font-size: 16px; color: var(--warm-300); line-height: 1.7; }
+.diffCard {
+  background: var(--warm-700); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px; padding: 40px;
+}
+.diffLabel {
+  font-family: var(--mono); font-size: 11px; color: var(--warm-400);
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px;
+}
+.diffTitle { font-size: 22px; font-weight: 700; color: white; margin-bottom: 8px; letter-spacing: -0.02em; }
+.diffSub { font-size: 14px; color: var(--warm-400); margin-bottom: 32px; }
+.diffStats { display: flex; gap: 32px; flex-wrap: wrap; }
+.diffStatNum { font-family: var(--serif); font-size: 32px; font-weight: 700; color: var(--green-400); letter-spacing: -0.03em; }
+.diffStatLabel { font-size: 12px; color: var(--warm-400); margin-top: 4px; }
+
+.vertRow { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.vertPill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 24px; background: var(--white);
+  border: 1px solid var(--warm-100); border-radius: 100px;
+  font-size: 14px; font-weight: 600; color: var(--warm-700); transition: all 0.25s;
+}
+.vertPill:hover { border-color: var(--green-200); background: var(--green-50); color: var(--green-700); }
+.vertSub { font-size: 12px; font-weight: 400; color: var(--warm-400); }
+
+@media (max-width: 768px) {
+  .hero { padding: 120px 0 60px; }
+  .diffGrid { grid-template-columns: 1fr; gap: 48px; }
+  .svcGrid { grid-template-columns: 1fr; }
+}

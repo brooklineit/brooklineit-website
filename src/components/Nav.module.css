@@ -1,0 +1,55 @@
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h); background: rgba(250,250,247,0.92);
+  backdrop-filter: blur(20px); border-bottom: 1px solid var(--warm-100);
+  transition: box-shadow 0.3s;
+}
+.scrolled { box-shadow: 0 1px 16px rgba(0,0,0,0.04); }
+.inner {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 40px;
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.logo img { height: 48px; width: auto; }
+.right { display: flex; align-items: center; gap: 6px; }
+.link {
+  font-size: 14px; font-weight: 500; color: var(--warm-500);
+  padding: 8px 14px; border-radius: 8px; transition: all 0.2s; cursor: pointer;
+}
+.link:hover { color: var(--warm-800); background: var(--warm-50); }
+.active { color: var(--warm-800); font-weight: 600; }
+.cta {
+  font-size: 13px; font-weight: 600; color: white;
+  background: var(--warm-800); padding: 9px 20px; border-radius: 8px;
+  margin-left: 8px; transition: all 0.25s;
+}
+.cta:hover { background: var(--green-600); }
+
+.dd { position: relative; }
+.ddMenu {
+  display: none; position: absolute; top: calc(100% + 8px); left: -12px;
+  background: var(--white); border: 1px solid var(--warm-100);
+  border-radius: 12px; padding: 8px; min-width: 240px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+}
+.dd:hover .ddMenu { display: block; }
+.ddMenu a {
+  display: block; padding: 10px 14px; font-size: 14px; font-weight: 500;
+  color: var(--warm-600); border-radius: 8px;
+}
+.ddMenu a:hover { background: var(--warm-50); color: var(--warm-800); }
+
+.toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.toggle span { display: block; width: 20px; height: 2px; background: var(--warm-700); margin: 4px 0; border-radius: 2px; }
+
+@media (max-width: 768px) {
+  .inner { padding: 0 24px; }
+  .toggle { display: block; }
+  .right {
+    display: none; position: absolute; top: var(--nav-h); left: 0; right: 0;
+    background: var(--white); border-bottom: 1px solid var(--warm-100);
+    flex-direction: column; padding: 16px 24px; align-items: stretch;
+  }
+  .open { display: flex; }
+  .link { padding: 12px 14px; }
+  .ddMenu { position: static; box-shadow: none; border: none; padding: 0 0 0 16px; display: block; }
+}

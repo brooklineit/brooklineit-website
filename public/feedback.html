@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brookline IT — Year Two Check-In</title>
+
+<!--
+  ============================================================
+  SETUP — responses go to vvargas@brooklineit.com
+  ============================================================
+  A static page can't send email by itself, so you need ONE
+  delivery method feeding that inbox. Pick A or B, then set
+  ENDPOINT below.
+
+  ---- OPTION A: Formspree (5 min, no code, recommended) ----
+    1. Sign up at formspree.io
+    2. Create a form, set its notification email to
+       vvargas@brooklineit.com
+    3. Copy the endpoint it gives you (looks like
+       https://formspree.io/f/abcdwxyz)
+    4. Paste it as ENDPOINT below.
+    Every submission then emails helpdesk@ + logs to a dashboard.
+
+  ---- OPTION B: Keep it in Microsoft 365 (no third party) ----
+    If you'd rather not route client feedback through Formspree:
+    1. In Power Automate, make an "When an HTTP request is
+       received" flow
+    2. Add a "Send an email (V2)" action -> To: vvargas@brooklineit.com,
+       body built from the JSON fields (name, company,
+       recommend_score, one_improvement, etc.)
+    3. Copy the flow's HTTP POST URL, paste as ENDPOINT.
+    Lives entirely in your tenant, sends as your own mail.
+
+  ---- If you leave ENDPOINT blank ----
+    The form opens a prefilled email TO vvargas@brooklineit.com
+    from the client's own mailbox. It works, but it relies on the
+    client hitting "send," so use A or B for hands-off delivery.
+  ============================================================
+-->
+<script>
+  const ENDPOINT = "https://formspree.io/f/xeebzpwz"; // Formspree -> delivers to vvargas@brooklineit.com
+  const FALLBACK_EMAIL = "vvargas@brooklineit.com";
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1c2620;
+    --ink-soft:#4a5650;
+    --paper:#f6f4ec;
+    --card:#fffdf8;
+    --emerald:#059669;
+    --emerald-deep:#047857;
+    --emerald-wash:#eaf5f0;
+    --line:#dfe2d9;
+    --amber:#c08a2d;
+    --error:#b4452f;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 100% -10%, #ecf4ee 0%, transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:"Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:660px;margin:0 auto;padding:48px 22px 96px}
+
+  /* ---- The note (signature element: owner-to-owner letter) ---- */
+  .note{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:34px 34px 30px;
+    box-shadow:0 1px 0 rgba(0,0,0,.02), 0 18px 40px -28px rgba(20,40,30,.5);
+  }
+  .eyebrow{
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--emerald-deep);font-weight:600;margin:0 0 14px;
+  }
+  .note h1{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:500;
+    font-size:clamp(27px,5.4vw,38px);
+    line-height:1.12;
+    letter-spacing:-.01em;
+    margin:0 0 16px;
+  }
+  .note p{margin:0 0 13px;color:var(--ink-soft);font-size:16.5px}
+  .note p strong{color:var(--ink);font-weight:600}
+  .sign{
+    font-family:"Fraunces", Georgia, serif;
+    font-size:22px;color:var(--ink);margin-top:18px;font-weight:500;
+  }
+  .sign span{display:block;font-family:"Instrument Sans",sans-serif;font-size:13px;color:var(--ink-soft);letter-spacing:.04em;margin-top:2px;font-weight:500}
+
+  /* ---- Questions ---- */
+  form{margin-top:14px}
+  .q{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px 24px 22px;
+    margin-top:16px;
+  }
+  .q .num{
+    font-family:"Fraunces",Georgia,serif;
+    font-size:14px;color:var(--emerald);font-weight:600;
+    display:inline-block;margin-bottom:6px;
+  }
+  .q label.headline{
+    display:block;
+    font-size:17.5px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:14px;
+    line-height:1.4;
+  }
+  .req{color:var(--amber);font-weight:600}
+
+  textarea, input[type=text]{
+    width:100%;
+    font-family:inherit;font-size:16px;color:var(--ink);
+    background:#fcfbf6;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+    resize:vertical;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  textarea{min-height:96px}
+  textarea::placeholder,input::placeholder{color:#9aa39c}
+  textarea:focus, input[type=text]:focus{
+    outline:none;
+    border-color:var(--emerald);
+    box-shadow:0 0 0 3px rgba(5,150,105,.14);
+  }
+
+  /* ---- 0-10 scale ---- */
+  .scale{display:flex;flex-wrap:wrap;gap:7px}
+  .scale input{position:absolute;opacity:0;width:1px;height:1px}
+  .scale label{
+    flex:1 1 auto;min-width:38px;text-align:center;
+    padding:11px 0;border:1.5px solid var(--line);border-radius:9px;
+    background:#fcfbf6;cursor:pointer;font-weight:600;font-size:15.5px;color:var(--ink-soft);
+    transition:all .12s ease;user-select:none;
+  }
+  .scale label:hover{border-color:var(--emerald);color:var(--emerald-deep)}
+  .scale input:checked + label{
+    background:var(--emerald);border-color:var(--emerald);color:#fff;
+    box-shadow:0 6px 14px -6px rgba(5,150,105,.6);
+  }
+  .scale input:focus-visible + label{box-shadow:0 0 0 3px rgba(5,150,105,.3)}
+  .scale-ends{display:flex;justify-content:space-between;margin-top:9px;font-size:12.5px;color:var(--ink-soft)}
+
+  .identity{display:flex;gap:14px;flex-wrap:wrap}
+  .identity > div{flex:1 1 200px}
+  .identity label.mini{display:block;font-size:13px;color:var(--ink-soft);font-weight:500;margin-bottom:6px}
+
+  .submit{
+    margin-top:22px;width:100%;
+    font-family:inherit;font-size:16.5px;font-weight:600;
+    color:#fff;background:var(--emerald);
+    border:none;border-radius:11px;padding:15px 20px;cursor:pointer;
+    transition:background .15s ease, transform .05s ease;
+  }
+  .submit:hover{background:var(--emerald-deep)}
+  .submit:active{transform:translateY(1px)}
+  .submit:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(5,150,105,.35)}
+
+  .field-error{color:var(--error);font-size:13.5px;margin-top:8px;display:none}
+  .q.invalid .field-error{display:block}
+  .q.invalid textarea,.q.invalid input[type=text]{border-color:var(--error)}
+
+  .foot{text-align:center;color:var(--ink-soft);font-size:13px;margin-top:24px}
+
+  /* ---- Thank-you state ---- */
+  .done{display:none;text-align:center;padding:50px 20px}
+  .done.show{display:block}
+  .done .mark{
+    width:62px;height:62px;border-radius:50%;background:var(--emerald-wash);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 22px;
+  }
+  .done .mark svg{width:30px;height:30px;stroke:var(--emerald-deep)}
+  .done h2{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:30px;margin:0 0 10px}
+  .done p{color:var(--ink-soft);font-size:16px;margin:0 auto;max-width:420px}
+
+  @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+  @media (max-width:480px){
+    .wrap{padding:30px 16px 70px}
+    .note{padding:26px 22px 24px}
+    .q{padding:20px 18px}
+    .scale label{min-width:30px;padding:10px 0;font-size:14px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="formview">
+    <!-- The note -->
+    <section class="note">
+      <p class="eyebrow">A note from Vince</p>
+      <h1>We're in year two — and I want to get better, not collect compliments.</h1>
+      <p>This is short. It's <strong>honest feedback</strong> I'm after, and I read every word myself.</p>
+      <p>Tell me straight — what's working, what isn't, and what you wish we'd handle for you. That's the only way we improve from here.</p>
+      <p class="sign">Vince<span>Owner, Brookline IT</span></p>
+    </section>
+
+    <form id="feedbackForm" novalidate>
+
+      <!-- Q1 -->
+      <div class="q" data-q>
+        <span class="num">01</span>
+        <label class="headline">How likely are you to recommend Brookline IT to another business owner? <span class="req">*</span></label>
+        <div class="scale" role="radiogroup" aria-label="0 to 10 recommendation score">
+          <!-- 0-10 buttons injected by JS -->
+        </div>
+        <div class="scale-ends"><span>Not likely</span><span>Extremely likely</span></div>
+        <div class="field-error">Pick a number so I have something to track over time.</div>
+      </div>
+
+      <!-- Q2 (projective) -->
+      <div class="q" data-q>
+        <span class="num">02</span>
+        <label class="headline" for="q2">Think about other business owners you know who rely on an IT provider. What do you think they most wish their provider did better?</label>
+        <textarea id="q2" name="q2_others_wish" placeholder="The things you hear other owners gripe about…"></textarea>
+      </div>
+
+      <!-- Q3 -->
+      <div class="q" data-q>
+        <span class="num">03</span>
+        <label class="headline" for="q3">We're not doing everything well yet — what's the one thing you'd most want us to improve? <span class="req">*</span></label>
+        <textarea id="q3" name="q3_improve" placeholder="If you could fix one thing about working with us…"></textarea>
+        <div class="field-error">This is the one I most need — even a half-formed thought helps.</div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="q" data-q>
+        <span class="num">04</span>
+        <label class="headline" for="q4">What's something that almost made you pick up the phone, but didn't feel worth opening a ticket over?</label>
+        <textarea id="q4" name="q4_friction" placeholder="The small stuff that nags but never becomes a ticket…"></textarea>
+      </div>
+
+      <!-- Q5 -->
+      <div class="q" data-q>
+        <span class="num">05</span>
+        <label class="headline" for="q5">What's eating up your time this year that you wish someone would just handle for you?</label>
+        <textarea id="q5" name="q5_timesink" placeholder="Doesn't have to be IT — anything on your plate…"></textarea>
+      </div>
+
+      <!-- Identity -->
+      <div class="q" data-q>
+        <span class="num">06</span>
+        <label class="headline">Who's this from? <span class="req">*</span></label>
+        <div class="identity">
+          <div>
+            <label class="mini" for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" autocomplete="name">
+          </div>
+          <div>
+            <label class="mini" for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Company name" autocomplete="organization">
+          </div>
+        </div>
+        <div class="field-error">Add your name and company so I can follow up with you directly.</div>
+      </div>
+
+      <button type="submit" class="submit">Send my feedback</button>
+      <p class="foot">Goes straight to Vince at Brookline IT. I'll follow up personally.</p>
+    </form>
+  </div>
+
+  <!-- Thank-you -->
+  <div class="done" id="doneview">
+    <div class="mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <h2>Got it — thank you.</h2>
+    <p>I read these myself, and if you flagged something, you'll hear back from me directly. That's a promise, not an auto-reply.</p>
+  </div>
+
+</div>
+
+<script>
+  // Build the 0–10 scale
+  const scale = document.querySelector('.scale');
+  for(let i=0;i<=10;i++){
+    const id='nps'+i;
+    const input=document.createElement('input');
+    input.type='radio';input.name='nps';input.value=i;input.id=id;
+    const label=document.createElement('label');
+    label.setAttribute('for',id);label.textContent=i;
+    scale.appendChild(input);scale.appendChild(label);
+  }
+
+  const form=document.getElementById('feedbackForm');
+
+  function clearError(el){el.closest('[data-q]').classList.remove('invalid');}
+  form.querySelectorAll('textarea,input').forEach(el=>{
+    el.addEventListener('input',()=>clearError(el));
+    el.addEventListener('change',()=>clearError(el));
+  });
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    let ok=true, firstBad=null;
+
+    const qs=[...form.querySelectorAll('[data-q]')];
+    const mark=(q)=>{q.classList.add('invalid'); if(!firstBad)firstBad=q; ok=false;};
+
+    // Q1 required
+    if(!form.querySelector('input[name="nps"]:checked')) mark(qs[0]);
+    // Q3 required
+    if(!document.getElementById('q3').value.trim()) mark(qs[2]);
+    // Identity required
+    if(!document.getElementById('name').value.trim() || !document.getElementById('company').value.trim()) mark(qs[5]);
+
+    if(!ok){ firstBad.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+
+    const data={
+      recommend_score: form.querySelector('input[name="nps"]:checked').value,
+      others_wish: document.getElementById('q2').value.trim(),
+      one_improvement: document.getElementById('q3').value.trim(),
+      unspoken_friction: document.getElementById('q4').value.trim(),
+      biggest_timesink: document.getElementById('q5').value.trim(),
+      name: document.getElementById('name').value.trim(),
+      company: document.getElementById('company').value.trim(),
+      submitted_at: new Date().toISOString()
+    };
+
+    const showDone=()=>{
+      document.getElementById('formview').style.display='none';
+      document.getElementById('doneview').classList.add('show');
+      window.scrollTo({top:0,behavior:'smooth'});
+    };
+
+    if(ENDPOINT){
+      try{
+        const res=await fetch(ENDPOINT,{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(data)
+        });
+        if(res.ok){ showDone(); }
+        else{ throw new Error('bad status'); }
+      }catch(err){
+        alert("Something went wrong sending that. Mind emailing it to "+FALLBACK_EMAIL+"? Sorry about that.");
+      }
+    } else {
+      // Fallback: open a prefilled email
+      const body=
+`Recommend score (0-10): ${data.recommend_score}
+
+What other owners wish their provider did better:
+${data.others_wish||'(blank)'}
+
+One thing to improve:
+${data.one_improvement}
+
+Almost-called friction:
+${data.unspoken_friction||'(blank)'}
+
+Biggest time sink this year:
+${data.biggest_timesink||'(blank)'}
+
+From: ${data.name}, ${data.company}`;
+      window.location.href='mailto:'+FALLBACK_EMAIL+
+        '?subject='+encodeURIComponent('Brookline IT feedback — '+data.company)+
+        '&body='+encodeURIComponent(body);
+      showDone();
+    }
+  });
+</script>
+</body>
+</html>

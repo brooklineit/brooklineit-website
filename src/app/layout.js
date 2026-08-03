@@ -65,6 +65,9 @@ const jsonLd = {
     'Cloud Infrastructure',
     'Network & Infrastructure',
     'VoIP',
+    'Digital Marketing',
+    'Local SEO',
+    'Google Ads Management',
   ],
 };
 

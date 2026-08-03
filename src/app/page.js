@@ -19,7 +19,7 @@ export default function Home() {
 
       <div className={styles.strip}>
         <div className={styles.stripInner}>
-          {['Construction', 'Dental', 'Manufacturing', 'Churches & Nonprofits', 'Professional Services', 'HVAC'].map(v => (
+          {['Construction', 'Restoration', 'Dental', 'Manufacturing', 'Churches & Nonprofits', 'Professional Services', 'HVAC'].map(v => (
             <span key={v} className={styles.stripItem}>{v}</span>
           ))}
         </div>
@@ -79,11 +79,12 @@ export default function Home() {
           <div style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto 48px' }}>
             <div className="tag">Who we serve</div>
             <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(30px, 4vw, 44px)', fontWeight: 700, color: 'var(--warm-800)', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: 14 }}>Trusted by businesses across the country</h2>
-            <p style={{ color: 'var(--warm-400)', fontSize: 16 }}>From Scranton to Charlotte to California — organizations that need their technology to be stable, secure, and easy to manage.</p>
+            <p style={{ color: 'var(--warm-400)', fontSize: 16 }}>From Northeast Pennsylvania through the Carolinas and Florida to California — organizations that need their technology to be stable, secure, and easy to manage.</p>
           </div>
           <div className={styles.vertRow}>
             {[
               { name: 'Construction', sub: 'Sage, estimating, field devices' },
+              { name: 'Restoration', sub: 'Carolinas & Florida, marketing + IT' },
               { name: 'Dental', sub: 'Practice software, HIPAA' },
               { name: 'Manufacturing', sub: 'On-prem, production' },
               { name: 'Churches', sub: 'M365, security, budgets' },

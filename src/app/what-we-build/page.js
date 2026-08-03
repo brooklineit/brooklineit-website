@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import CTA from '@/components/CTA';
 
 export const metadata = {
@@ -6,13 +7,18 @@ export const metadata = {
   alternates: { canonical: '/what-we-build' },
 };
 
-function BuildItem({ title, sub, description, stats, features, featureLabel }) {
+function BuildItem({ title, sub, description, stats, features, featureLabel, href, linkText }) {
   return (
     <div style={{ background: 'var(--white)', padding: 48, display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: 48, alignItems: 'start' }}>
       <div>
         <h3 style={{ fontFamily: 'var(--serif)', fontSize: 26, fontWeight: 700, color: 'var(--warm-800)', letterSpacing: '-0.02em', marginBottom: 8 }}>{title}</h3>
         <div style={{ fontSize: 14, color: 'var(--green-600)', fontWeight: 500, marginBottom: 16 }}>{sub}</div>
         <p style={{ maxWidth: 'none' }}>{description}</p>
+        {href && (
+          <Link href={href} style={{ display: 'inline-block', marginTop: 16, fontSize: 14, fontWeight: 500, color: 'var(--green-600)', textDecoration: 'none' }}>
+            {linkText} &rarr;
+          </Link>
+        )}
         {stats && (
           <div style={{ display: 'flex', gap: 32, marginTop: 24, paddingTop: 24, borderTop: '1px solid var(--warm-100)', flexWrap: 'wrap' }}>
             {stats.map((s, i) => (
@@ -73,6 +79,8 @@ export default function WhatWeBuild() {
               stats={[{ val: '24/7', label: 'NWS alert monitoring' }, { val: '~1 hr', label: 'From alert to drafted response' }, { val: 'Approve', label: 'Required before any spend' }]}
               featureLabel="What we built"
               features={['County-level National Weather Service alert monitoring', 'Automatic budget, ad copy, and post drafting', 'Approve-to-act — the system proposes, a human decides', 'Baseline capture so every surge can be reverted', 'Runs on our own infrastructure, not a vendor dashboard']}
+              href="/marketing"
+              linkText="See how it fits our restoration marketing"
             />
             <BuildItem
               title="Custom Quoting Platform"

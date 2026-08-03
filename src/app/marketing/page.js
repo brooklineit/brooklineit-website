@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import CTA from '@/components/CTA';
+import styles from './marketing.module.css';
 
 export const metadata = {
   title: 'Marketing for Restoration Companies',
@@ -44,11 +45,11 @@ const serviceJsonLd = {
 
 function Pillar({ num, title, sub, items }) {
   return (
-    <div style={{ background: 'var(--white)', padding: 40 }}>
-      <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--warm-400)', letterSpacing: '0.08em', marginBottom: 14 }}>{num}</div>
-      <h3 style={{ fontFamily: 'var(--serif)', fontSize: 24, fontWeight: 700, color: 'var(--warm-800)', letterSpacing: '-0.02em', marginBottom: 6 }}>{title}</h3>
-      <div style={{ fontSize: 14, color: 'var(--green-600)', fontWeight: 500, marginBottom: 18 }}>{sub}</div>
-      <div className="feature-list" style={{ margin: 0 }}>
+    <div className={styles.pillar}>
+      <div className={styles.pillarNum}>{num}</div>
+      <h3>{title}</h3>
+      <div className={styles.pillarSub}>{sub}</div>
+      <div className="feature-list" style={{ marginBottom: 0 }}>
         {items.map((f, i) => (
           <div key={i} className="feature-item" style={i === 0 ? { borderTop: 'none' } : {}}>
             <div className="feature-dot" /><p>{f}</p>
@@ -94,7 +95,7 @@ export default function Marketing() {
           </div>
 
           {/* The four pillars */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 1, background: 'var(--warm-100)', border: '1px solid var(--warm-100)', borderRadius: 16, overflow: 'hidden' }}>
+          <div className={styles.pillars}>
             <Pillar
               num="01"
               title="Google Ads Management"
@@ -196,7 +197,7 @@ export default function Marketing() {
             <p>From a restoration company in the Carolinas we&apos;ve managed since late 2025. These figures come from their live Google Ads account.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 32, padding: '36px 0', borderTop: '1px solid var(--warm-100)', borderBottom: '1px solid var(--warm-100)', marginBottom: 32 }}>
+          <div className={styles.stats}>
             {[
               { val: '$16–24 → $8–12', label: 'Cost per click on emergency water keywords, before vs. now' },
               { val: '$1,400+/mo', label: 'Saved in ad spend while call volume kept growing' },
@@ -204,8 +205,8 @@ export default function Marketing() {
               { val: '23 pages', label: 'Custom website with lead form and call tracking on every page' },
             ].map((s, i) => (
               <div key={i}>
-                <div style={{ fontFamily: 'var(--serif)', fontSize: 28, fontWeight: 700, color: 'var(--green-600)', letterSpacing: '-0.02em', marginBottom: 6 }}>{s.val}</div>
-                <div style={{ fontSize: 13, color: 'var(--warm-400)', lineHeight: 1.5 }}>{s.label}</div>
+                <div className={styles.statVal}>{s.val}</div>
+                <div className={styles.statLabel}>{s.label}</div>
               </div>
             ))}
           </div>

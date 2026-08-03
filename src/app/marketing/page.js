@@ -1,260 +1,27 @@
-import Link from 'next/link';
 import CTA from '@/components/CTA';
-import Testimonial from '@/components/Testimonial';
 import { pageMetadata } from '@/lib/metadata';
-import { restorationCaseStats } from '@/data/case-stats';
-import { restorationTestimonials } from '@/data/testimonials';
-import styles from './marketing.module.css';
+import { restorationVertical as v } from '@/data/verticals/restoration';
+import {
+  MarketingHero,
+  MarketingIntro,
+  StormSection,
+  PillarGrid,
+  ResultsSection,
+} from '@/components/marketing/MarketingSections';
 
-export const metadata = pageMetadata({
-  title: 'Marketing for Restoration Companies',
-  description: 'Google Ads, local SEO, and websites built to convert for water, fire, and mold restoration companies. Storm-triggered ad automation included. One client per market.',
-  path: '/marketing',
-  socialDescription: 'Google Ads, local SEO, and websites built to convert for restoration companies. Storm-triggered ad automation included.',
-});
-
-const serviceJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  '@id': 'https://www.brooklineit.com/marketing#service',
-  name: 'Marketing for Restoration Companies',
-  serviceType: 'Digital Marketing for Restoration Contractors',
-  description:
-    'Google Ads management, local SEO, conversion-focused websites, and storm-triggered ad automation for water, fire, and mold restoration companies.',
-  provider: { '@id': 'https://www.brooklineit.com/#business' },
-  areaServed: [
-    { '@type': 'State', name: 'South Carolina' },
-    { '@type': 'State', name: 'North Carolina' },
-    { '@type': 'State', name: 'Florida' },
-    { '@type': 'State', name: 'Pennsylvania' },
-  ],
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Restoration Marketing Services',
-    itemListElement: [
-      'Google Ads Management',
-      'Local Services Ads (LSA) Management',
-      'Local SEO & Google Business Profile',
-      'Website Design & Development',
-      'Conversion Tracking & Analytics',
-      'Storm-Triggered Ad Automation',
-    ].map((n) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: n } })),
-  },
-};
-
-function Pillar({ num, title, sub, items }) {
-  return (
-    <div className={styles.pillar}>
-      <div className={styles.pillarNum}>{num}</div>
-      <h3>{title}</h3>
-      <div className={styles.pillarSub}>{sub}</div>
-      <div className="feature-list" style={{ marginBottom: 0 }}>
-        {items.map((f, i) => (
-          <div key={i} className="feature-item" style={i === 0 ? { borderTop: 'none' } : {}}>
-            <div className="feature-dot" /><p>{f}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+export const metadata = pageMetadata(v.meta);
 
 export default function Marketing() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(v.jsonLd) }} />
 
-      <section className="page-hero">
-        <div className="wrap">
-          <div className="tag">Marketing</div>
-          <h1>When the storm hits, your ads should already be live.</h1>
-          <p>We built software that watches National Weather Service alerts for your counties and drafts your budget increase, your ad copy, and your Google post before your competitors are awake. Wrapped around full Google Ads management, local SEO, and a website built to turn visitors into calls &mdash; for water, fire, and mold restoration companies.</p>
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 32 }}>
-            <Link href="/market-review" className="btn btn-dark">Request a Market Review &rarr;</Link>
-            <Link href="/what-we-build" className="btn btn-ghost">See What We Build</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Why us */}
-      <section className="content" style={{ background: 'var(--white)' }}>
-        <div className="wrap">
-          <div className="two-col" style={{ marginBottom: 48 }}>
-            <div>
-              <h2>An IT company that does marketing? Yes &mdash; and that&apos;s the advantage.</h2>
-              <p>Most restoration marketing agencies resell the same dashboard to every client. We build our own tools. The storm automation below, the reporting pipeline, the tracking &mdash; that&apos;s software we wrote, running on infrastructure we manage. When something needs to work differently for your market, we change the code.</p>
-            </div>
-            <div>
-              <div className="callout">
-                <div className="tag">One client per market</div>
-                <h3>We won&apos;t run ads for your competitor.</h3>
-                <p>We can&apos;t bid against ourselves and serve you honestly, so we don&apos;t. Work with us and you&apos;re our only client in your trade, in your market &mdash; no one else running water, fire, or mold ads against you. First come, first served.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Storm-Ready — the differentiator */}
-      <section className="content" style={{ background: 'var(--warm-800)' }}>
-        <div className="wrap">
-          <div className="two-col-wide" style={{ alignItems: 'center' }}>
-            <div>
-              <div className="tag" style={{ color: 'var(--green-400)' }}>Built in-house</div>
-              <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(30px, 4vw, 44px)', fontWeight: 700, color: 'var(--white)', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: 20 }}>The Storm-Ready System</h2>
-              <p style={{ color: 'var(--warm-200, #d6d3cd)', maxWidth: 'none', marginBottom: 20 }}>
-                In restoration, the storm <em>is</em> the demand spike. Whoever shows up first that night wins the phone call. So we built software that watches for the storm and drafts your response before your competitors are awake.
-              </p>
-              <div className="feature-list" style={{ margin: 0 }}>
-                {[
-                  'Monitors National Weather Service alerts for your counties, around the clock',
-                  'The night a hurricane, tropical storm, flood, or freeze warning hits, it drafts a budget increase, storm-specific ad copy, and a Google post — usually within the hour',
-                  'Nothing spends until you approve it. One tap.',
-                ].map((f, i) => (
-                  <div key={i} className="feature-item" style={{ borderColor: 'rgba(255,255,255,0.12)', ...(i === 0 ? { borderTop: 'none' } : {}) }}>
-                    <div className="feature-dot" />
-                    <p style={{ color: 'var(--warm-200, #d6d3cd)' }}>{f}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 16, padding: 40 }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--green-400)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 16 }}>Why it matters</div>
-              <p style={{ color: 'var(--white)', fontSize: 18, lineHeight: 1.5, maxWidth: 'none', marginBottom: 24 }}>
-                You don&apos;t have to outspend the national franchises. You beat them on timing.
-              </p>
-              <p style={{ color: 'var(--warm-400)', fontSize: 14, maxWidth: 'none', marginBottom: 0 }}>
-                Approve-to-act by design — the system proposes, a human decides. Nothing changes your budget automatically.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="content" style={{ background: 'var(--white)' }}>
-        <div className="wrap">
-          {/* The four pillars */}
-          <div className={styles.pillars}>
-            <Pillar
-              num="01"
-              title="Google Ads Management"
-              sub="The engine — built, watched, and reported on"
-              items={[
-                'Service and city-specific ad groups, each matched to its own landing page',
-                'Weekly search-term review with negative keywords added continuously',
-                'Local Services Ads (LSA) profile configuration and job-type cleanup',
-                'Budget and bid management against a hard monthly ceiling you set',
-                'Conversion tracking built, then verified with live test calls and forms',
-                'Ads run 24/7 — emergencies don’t keep business hours',
-              ]}
-            />
-            <Pillar
-              num="02"
-              title="A Website Built to Convert"
-              sub="Around 20 pages, designed to produce calls"
-              items={[
-                'Home, service pages, and a landing page for every city you serve',
-                'Lead form on every page, tagged by city and service',
-                'Call tracking and form tracking wired into Google Ads',
-                'Fast, mobile-first, click-to-call everywhere',
-                'Hosting, security, and ongoing edits included',
-                'You own the domain and the site — always',
-              ]}
-            />
-            <Pillar
-              num="03"
-              title="Local SEO & Content"
-              sub="The part that compounds"
-              items={[
-                'Blog articles written for what homeowners in your market actually search',
-                'Weekly Google Business Profile posts',
-                'Citation and NAP audits across the directories that matter',
-                'City-by-service pages added over time',
-                'A same-day review-request process for your crew',
-                'Reviews are the #1 local ranking factor — we build the habit',
-              ]}
-            />
-            <Pillar
-              num="04"
-              title="Reporting You Can Check"
-              sub="No black box"
-              items={[
-                'Live dashboard: spend, clicks, cost per click, leads',
-                'Monthly plain-English report: what changed and why',
-                'Every account change is logged and reviewable',
-                'The ad account stays yours — full access, always',
-                'We take Manager access only, never ownership',
-                'Numbers are pulled fresh from the API, not screenshots',
-              ]}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Results */}
-      <section className="content">
-        <div className="wrap">
-          <div style={{ maxWidth: 620, marginBottom: 40 }}>
-            <div className="tag">Results</div>
-            <h2>What this looks like in practice</h2>
-            <p>From a restoration company in the Carolinas we&apos;ve managed since late 2025. These figures come from their live Google Ads account.</p>
-          </div>
-
-          <div className={styles.stats}>
-            {restorationCaseStats.map((s, i) => (
-              <div key={i}>
-                <div className={styles.statVal}>{s.val}</div>
-                <div className={styles.statLabel}>{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="callout" style={{ marginBottom: 40 }}>
-            <p style={{ maxWidth: 'none', marginBottom: 8 }}>
-              In another market, a rebuilt Local Services profile and three new Search campaigns produced <strong>more ad impressions in 12 days than the previous seven and a half months combined</strong> — achieved by fixing configuration, not by spending more.
-            </p>
-            <p style={{ fontSize: 13, color: 'var(--warm-400)', maxWidth: 'none', marginBottom: 0 }}>
-              {restorationTestimonials.length === 0 && 'Client references available on request. '}
-              These are individual results in specific markets — we won&apos;t promise you identical numbers. What you get is the same system and the same transparency.
-            </p>
-          </div>
-
-          {restorationTestimonials.length > 0 && (
-            <div style={{ display: 'grid', gridTemplateColumns: restorationTestimonials.length > 1 ? 'repeat(auto-fit, minmax(320px, 1fr))' : '1fr', gap: 20, marginBottom: 40 }}>
-              {restorationTestimonials.map((t, i) => (
-                <Testimonial key={i} {...t} />
-              ))}
-            </div>
-          )}
-
-          <div className="two-col">
-            <div>
-              <h2>Who this is for</h2>
-              <p>Water, fire, mold, smoke, and biohazard restoration companies that want their phone to ring more often and know exactly why it did. Owner-operated firms competing against national franchises are where this works best.</p>
-              <p style={{ fontSize: 14, color: 'var(--warm-400)' }}>Built for restoration. If you&apos;re in roofing or another storm-driven trade and this sounds like your problem, ask &mdash; the system transfers.</p>
-            </div>
-            <div>
-              <div style={{ background: 'var(--warm-50)', borderRadius: 16, padding: 40 }}>
-                <div className="tag" style={{ marginBottom: 14 }}>Currently serving</div>
-                <div className="feature-list" style={{ margin: 0 }}>
-                  {['Charleston, SC', 'Cape Coral & Southwest Florida', 'Rock Hill, SC & Charlotte metro'].map((f, i) => (
-                    <div key={i} className="feature-item" style={i === 0 ? { borderTop: 'none' } : {}}>
-                      <div className="feature-dot" /><p>{f}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <CTA
-        heading="Is your market still open?"
-        body="We take one restoration company per market. Tell us where you work and we’ll tell you straight — plus what we see in your current ads and local presence."
-        ctaText="Request a Market Review →"
-        ctaHref="/market-review"
-      />
+      <MarketingHero {...v.hero} />
+      <MarketingIntro {...v.intro} />
+      <StormSection {...v.storm} />
+      <PillarGrid pillars={v.pillars} />
+      <ResultsSection {...v.results} whoThisIsFor={v.whoThisIsFor} />
+      <CTA {...v.cta} />
     </>
   );
 }

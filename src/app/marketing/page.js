@@ -71,7 +71,7 @@ export default function Marketing() {
           <h1>Marketing for restoration companies.</h1>
           <p>Google Ads, local SEO, and a website built to turn visitors into calls &mdash; plus storm-triggered ad automation we built ourselves. The same system we run for water, fire, and mold restoration companies in the Carolinas and Florida.</p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 32 }}>
-            <Link href="/contact" className="btn btn-dark">Request a Market Review &rarr;</Link>
+            <Link href="/market-review" className="btn btn-dark">Request a Market Review &rarr;</Link>
             <Link href="/what-we-build" className="btn btn-ghost">See What We Build</Link>
           </div>
         </div>

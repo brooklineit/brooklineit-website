@@ -4,7 +4,7 @@ export default function sitemap() {
   const routes = [
     '', '/about', '/what-we-build', '/contact',
     '/managed-it', '/cloud', '/cybersecurity',
-    '/network', '/on-premises', '/voice', '/marketing',
+    '/network', '/on-premises', '/voice', '/marketing', '/market-review',
   ];
 
   return routes.map(route => ({

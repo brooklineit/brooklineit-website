@@ -64,8 +64,8 @@ export default function Marketing() {
       <section className="page-hero">
         <div className="wrap">
           <div className="tag">Marketing</div>
-          <h1>Marketing for restoration companies.</h1>
-          <p>Google Ads, local SEO, and a website built to turn visitors into calls &mdash; plus storm-triggered ad automation we built ourselves. The same system we run for water, fire, and mold restoration companies in the Carolinas and Florida.</p>
+          <h1>When the storm hits, your ads should already be live.</h1>
+          <p>We built software that watches National Weather Service alerts for your counties and drafts your budget increase, your ad copy, and your Google post before your competitors are awake. Wrapped around full Google Ads management, local SEO, and a website built to turn visitors into calls &mdash; for water, fire, and mold restoration companies.</p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 32 }}>
             <Link href="/market-review" className="btn btn-dark">Request a Market Review &rarr;</Link>
             <Link href="/what-we-build" className="btn btn-ghost">See What We Build</Link>
@@ -85,11 +85,51 @@ export default function Marketing() {
               <div className="callout">
                 <div className="tag">One client per market</div>
                 <h3>We won&apos;t run ads for your competitor.</h3>
-                <p>We can&apos;t bid against ourselves and serve you honestly, so we don&apos;t. Work with us and you&apos;re our only restoration client in your market. First come, first served.</p>
+                <p>We can&apos;t bid against ourselves and serve you honestly, so we don&apos;t. Work with us and you&apos;re our only client in your trade, in your market &mdash; no one else running water, fire, or mold ads against you. First come, first served.</p>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
+      {/* Storm-Ready — the differentiator */}
+      <section className="content" style={{ background: 'var(--warm-800)' }}>
+        <div className="wrap">
+          <div className="two-col-wide" style={{ alignItems: 'center' }}>
+            <div>
+              <div className="tag" style={{ color: 'var(--green-400)' }}>Built in-house</div>
+              <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(30px, 4vw, 44px)', fontWeight: 700, color: 'var(--white)', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: 20 }}>The Storm-Ready System</h2>
+              <p style={{ color: 'var(--warm-200, #d6d3cd)', maxWidth: 'none', marginBottom: 20 }}>
+                In restoration, the storm <em>is</em> the demand spike. Whoever shows up first that night wins the phone call. So we built software that watches for the storm and drafts your response before your competitors are awake.
+              </p>
+              <div className="feature-list" style={{ margin: 0 }}>
+                {[
+                  'Monitors National Weather Service alerts for your counties, around the clock',
+                  'The night a hurricane, tropical storm, flood, or freeze warning hits, it drafts a budget increase, storm-specific ad copy, and a Google post — usually within the hour',
+                  'Nothing spends until you approve it. One tap.',
+                ].map((f, i) => (
+                  <div key={i} className="feature-item" style={{ borderColor: 'rgba(255,255,255,0.12)', ...(i === 0 ? { borderTop: 'none' } : {}) }}>
+                    <div className="feature-dot" />
+                    <p style={{ color: 'var(--warm-200, #d6d3cd)' }}>{f}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 16, padding: 40 }}>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--green-400)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 16 }}>Why it matters</div>
+              <p style={{ color: 'var(--white)', fontSize: 18, lineHeight: 1.5, maxWidth: 'none', marginBottom: 24 }}>
+                You don&apos;t have to outspend the national franchises. You beat them on timing.
+              </p>
+              <p style={{ color: 'var(--warm-400)', fontSize: 14, maxWidth: 'none', marginBottom: 0 }}>
+                Approve-to-act by design — the system proposes, a human decides. Nothing changes your budget automatically.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="content" style={{ background: 'var(--white)' }}>
+        <div className="wrap">
           {/* The four pillars */}
           <div className={styles.pillars}>
             <Pillar
@@ -148,42 +188,6 @@ export default function Marketing() {
         </div>
       </section>
 
-      {/* Storm-Ready — the differentiator */}
-      <section className="content" style={{ background: 'var(--warm-800)' }}>
-        <div className="wrap">
-          <div className="two-col-wide" style={{ alignItems: 'center' }}>
-            <div>
-              <div className="tag" style={{ color: 'var(--green-400)' }}>Built in-house</div>
-              <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(30px, 4vw, 44px)', fontWeight: 700, color: 'var(--white)', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: 20 }}>The Storm-Ready System</h2>
-              <p style={{ color: 'var(--warm-200, #d6d3cd)', maxWidth: 'none', marginBottom: 20 }}>
-                In restoration, the storm <em>is</em> the demand spike. Whoever shows up first that night wins the phone call. So we built software that watches for the storm and drafts your response before your competitors are awake.
-              </p>
-              <div className="feature-list" style={{ margin: 0 }}>
-                {[
-                  'Monitors National Weather Service alerts for your counties, around the clock',
-                  'The night a hurricane, tropical storm, flood, or freeze warning hits, it drafts a budget increase, storm-specific ad copy, and a Google post — usually within the hour',
-                  'Nothing spends until you approve it. One tap.',
-                ].map((f, i) => (
-                  <div key={i} className="feature-item" style={{ borderColor: 'rgba(255,255,255,0.12)', ...(i === 0 ? { borderTop: 'none' } : {}) }}>
-                    <div className="feature-dot" />
-                    <p style={{ color: 'var(--warm-200, #d6d3cd)' }}>{f}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 16, padding: 40 }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--green-400)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 16 }}>Why it matters</div>
-              <p style={{ color: 'var(--white)', fontSize: 18, lineHeight: 1.5, maxWidth: 'none', marginBottom: 24 }}>
-                You don&apos;t have to outspend the national franchises. You beat them on timing.
-              </p>
-              <p style={{ color: 'var(--warm-400)', fontSize: 14, maxWidth: 'none', marginBottom: 0 }}>
-                Approve-to-act by design — the system proposes, a human decides. Nothing changes your budget automatically.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Results */}
       <section className="content">
         <div className="wrap">
@@ -220,6 +224,7 @@ export default function Marketing() {
             <div>
               <h2>Who this is for</h2>
               <p>Water, fire, mold, smoke, and biohazard restoration companies that want their phone to ring more often and know exactly why it did. Owner-operated firms competing against national franchises are where this works best.</p>
+              <p style={{ fontSize: 14, color: 'var(--warm-400)' }}>Built for restoration. If you&apos;re in roofing or another storm-driven trade and this sounds like your problem, ask &mdash; the system transfers.</p>
             </div>
             <div>
               <div style={{ background: 'var(--warm-50)', borderRadius: 16, padding: 40 }}>

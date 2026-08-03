@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import CTA from '@/components/CTA';
+import Testimonial from '@/components/Testimonial';
 import { pageMetadata } from '@/lib/metadata';
+import { restorationCaseStats } from '@/data/case-stats';
+import { restorationTestimonials } from '@/data/testimonials';
 import styles from './marketing.module.css';
 
 export const metadata = pageMetadata({
@@ -198,12 +201,7 @@ export default function Marketing() {
           </div>
 
           <div className={styles.stats}>
-            {[
-              { val: '$16–24 → $8–12', label: 'Cost per click on emergency water keywords, before vs. now' },
-              { val: '$1,400+/mo', label: 'Saved in ad spend while call volume kept growing' },
-              { val: '18+', label: 'Rounds of negative keywords blocking junk and competitor clicks' },
-              { val: '23 pages', label: 'Custom website with lead form and call tracking on every page' },
-            ].map((s, i) => (
+            {restorationCaseStats.map((s, i) => (
               <div key={i}>
                 <div className={styles.statVal}>{s.val}</div>
                 <div className={styles.statLabel}>{s.label}</div>
@@ -216,9 +214,18 @@ export default function Marketing() {
               In another market, a rebuilt Local Services profile and three new Search campaigns produced <strong>more ad impressions in 12 days than the previous seven and a half months combined</strong> — achieved by fixing configuration, not by spending more.
             </p>
             <p style={{ fontSize: 13, color: 'var(--warm-400)', maxWidth: 'none', marginBottom: 0 }}>
-              Client references available on request. These are individual results in specific markets — we won&apos;t promise you identical numbers. What you get is the same system and the same transparency.
+              {restorationTestimonials.length === 0 && 'Client references available on request. '}
+              These are individual results in specific markets — we won&apos;t promise you identical numbers. What you get is the same system and the same transparency.
             </p>
           </div>
+
+          {restorationTestimonials.length > 0 && (
+            <div style={{ display: 'grid', gridTemplateColumns: restorationTestimonials.length > 1 ? 'repeat(auto-fit, minmax(320px, 1fr))' : '1fr', gap: 20, marginBottom: 40 }}>
+              {restorationTestimonials.map((t, i) => (
+                <Testimonial key={i} {...t} />
+              ))}
+            </div>
+          )}
 
           <div className="two-col">
             <div>

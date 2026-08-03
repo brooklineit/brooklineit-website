@@ -41,7 +41,7 @@ export default function Contact() {
               <div className="callout">
                 <div className="tag">Service area</div>
                 <h3>Nationwide support, local roots.</h3>
-                <p>On-site support throughout Northeast Pennsylvania. Remote managed IT services for clients across PA, North Carolina, Florida, Texas, and California.</p>
+                <p>On-site support throughout Northeast Pennsylvania. Remote managed IT services for clients across PA, North Carolina, South Carolina, Florida, Texas, and California.</p>
               </div>
             </div>
           </div>

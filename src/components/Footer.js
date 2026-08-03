@@ -9,7 +9,7 @@ export default function Footer() {
         <div className={styles.grid}>
           <div className={styles.brand}>
             <Image src="/images/logo-white.png" alt="Brookline IT" width={200} height={32} />
-            <p>Managed IT services and custom technology for businesses. Headquartered in Scranton, PA — serving clients across Pennsylvania, North Carolina, Florida, Texas, and California.</p>
+            <p>Managed IT services and custom technology for businesses. Headquartered in Scranton, PA — serving clients across Pennsylvania, North Carolina, South Carolina, Florida, Texas, and California.</p>
           </div>
           <div>
             <h4>Services</h4>

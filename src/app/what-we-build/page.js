@@ -67,6 +67,14 @@ export default function WhatWeBuild() {
 
           <div style={{ display: 'grid', gap: 1, background: 'var(--warm-100)', border: '1px solid var(--warm-100)', borderRadius: 16, overflow: 'hidden' }}>
             <BuildItem
+              title="Storm-Ready Ad Automation"
+              sub="Restoration contractors &middot; SC, NC, FL"
+              description="In restoration, the storm is the demand spike &mdash; and whoever responds first that night wins the call. We built a system that watches National Weather Service alerts around the clock for each client's counties. When a hurricane, tropical storm, flood, or freeze warning hits, it drafts a budget increase, storm-specific ad copy, and a Google post, usually within the hour. Nothing spends until a human approves it."
+              stats={[{ val: '24/7', label: 'NWS alert monitoring' }, { val: '~1 hr', label: 'From alert to drafted response' }, { val: 'Approve', label: 'Required before any spend' }]}
+              featureLabel="What we built"
+              features={['County-level National Weather Service alert monitoring', 'Automatic budget, ad copy, and post drafting', 'Approve-to-act — the system proposes, a human decides', 'Baseline capture so every surge can be reverted', 'Runs on our own infrastructure, not a vendor dashboard']}
+            />
+            <BuildItem
               title="Custom Quoting Platform"
               sub="National HVAC contractor &middot; PA, FL, TX, CA"
               description="A national HVAC contractor was spending 30+ minutes on every quote. We built a platform that reads incoming requests, matches equipment and pricing automatically, and generates proposals in under 5 minutes."

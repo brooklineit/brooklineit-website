@@ -53,6 +53,7 @@ const jsonLd = {
   areaServed: [
     { '@type': 'State', name: 'Pennsylvania' },
     { '@type': 'State', name: 'North Carolina' },
+    { '@type': 'State', name: 'South Carolina' },
     { '@type': 'State', name: 'Florida' },
     { '@type': 'State', name: 'Texas' },
     { '@type': 'State', name: 'California' },

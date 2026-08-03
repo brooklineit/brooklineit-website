@@ -9,7 +9,7 @@ export default function Home() {
         <div className="wrap">
           <div className={styles.eyebrow}>Scranton, PA · Serving clients nationwide</div>
           <h1 className={styles.h1}>IT that works the way <span>your business</span> does.</h1>
-          <p className={styles.desc}>Managed IT services, cybersecurity, and custom-built technology for businesses across Pennsylvania, North Carolina, Florida, Texas, and California. We don&apos;t just keep things running — we build tools that make your operations faster.</p>
+          <p className={styles.desc}>Managed IT services, cybersecurity, and custom-built technology for businesses across Pennsylvania, North Carolina, South Carolina, Florida, Texas, and California. We don&apos;t just keep things running — we build tools that make your operations faster.</p>
           <div className={styles.actions}>
             <Link href="/contact" className="btn btn-dark">Schedule a Free IT Checkup →</Link>
             <Link href="/what-we-build" className="btn btn-ghost">See What We Build</Link>

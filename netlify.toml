@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Netlify's Next.js Runtime handles the App Router, the static prerender, and
+# the headers()/rewrites() declared in next.config.js. It is auto-installed for
+# Next.js projects; declared explicitly here so the dependency is visible.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

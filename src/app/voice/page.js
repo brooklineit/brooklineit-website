@@ -1,10 +1,11 @@
+import { pageMetadata } from '@/lib/metadata';
 import CTA from '@/components/CTA';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Business Phone Systems & VoIP',
   description: 'Business phone systems, VoIP, and Microsoft Teams phone support for businesses.',
-  alternates: { canonical: '/voice' },
-};
+  path: '/voice',
+});
 
 export default function Voice() {
   return (

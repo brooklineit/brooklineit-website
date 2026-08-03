@@ -1,8 +1,9 @@
-export const metadata = {
+import { pageMetadata } from '@/lib/metadata';
+export const metadata = pageMetadata({
   title: 'Contact',
   description: 'Get in touch with Brookline IT for a free IT checkup. Serving businesses in Scranton and nationwide.',
-  alternates: { canonical: '/contact' },
-};
+  path: '/contact',
+});
 
 export default function Contact() {
   return (

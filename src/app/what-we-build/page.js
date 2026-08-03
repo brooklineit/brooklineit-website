@@ -1,11 +1,12 @@
+import { pageMetadata } from '@/lib/metadata';
 import Link from 'next/link';
 import CTA from '@/components/CTA';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'What We Build',
   description: 'See the custom tools Brookline IT has built. We don\'t just manage IT, we build technology that fits your business.',
-  alternates: { canonical: '/what-we-build' },
-};
+  path: '/what-we-build',
+});
 
 function BuildItem({ title, sub, description, stats, features, featureLabel, href, linkText }) {
   return (

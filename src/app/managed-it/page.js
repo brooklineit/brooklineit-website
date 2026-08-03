@@ -1,10 +1,11 @@
+import { pageMetadata } from '@/lib/metadata';
 import CTA from '@/components/CTA';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Managed IT Services',
   description: 'Brookline IT provides managed IT services for small businesses in Scranton, Wilkes-Barre, and nationwide.',
-  alternates: { canonical: '/managed-it' },
-};
+  path: '/managed-it',
+});
 
 export default function ManagedIT() {
   return (

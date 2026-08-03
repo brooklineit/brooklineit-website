@@ -1,10 +1,11 @@
+import { pageMetadata } from '@/lib/metadata';
 import CTA from '@/components/CTA';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Cybersecurity',
   description: 'Cybersecurity services for small businesses. Phishing defense, endpoint protection, backup and recovery.',
-  alternates: { canonical: '/cybersecurity' },
-};
+  path: '/cybersecurity',
+});
 
 export default function Cybersecurity() {
   return (

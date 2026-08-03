@@ -1,10 +1,11 @@
+import { pageMetadata } from '@/lib/metadata';
 import CTA from '@/components/CTA';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Microsoft 365 & Cloud Services',
   description: 'Microsoft 365 management, cloud migrations, and Entra ID configuration for businesses.',
-  alternates: { canonical: '/cloud' },
-};
+  path: '/cloud',
+});
 
 export default function Cloud() {
   return (

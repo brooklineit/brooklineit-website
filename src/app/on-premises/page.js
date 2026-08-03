@@ -1,10 +1,11 @@
+import { pageMetadata } from '@/lib/metadata';
 import CTA from '@/components/CTA';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'On-Site IT Support',
   description: 'On-site server management, desktop support, and hardware services for Scranton-area businesses.',
-  alternates: { canonical: '/on-premises' },
-};
+  path: '/on-premises',
+});
 
 export default function OnPremises() {
   return (

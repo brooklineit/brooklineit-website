@@ -1,25 +1,12 @@
 import MarketReviewForm from './MarketReviewForm';
+import { pageMetadata } from '@/lib/metadata';
 
-const title = 'Request a Market Review';
-const description =
-  'Tell us where you work and we’ll tell you straight whether your market is still open — plus what we see in your current ads and local presence. For water, fire, and mold restoration companies.';
-
-export const metadata = {
-  title,
-  description,
-  alternates: { canonical: '/market-review' },
-  openGraph: {
-    title: `${title} · Brookline IT`,
-    description,
-    url: 'https://www.brooklineit.com/market-review',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${title} · Brookline IT`,
-    description,
-  },
-};
+export const metadata = pageMetadata({
+  title: 'Request a Market Review',
+  description:
+    'Tell us where you work and we’ll tell you straight whether your market is still open — plus what we see in your current ads and local presence. For water, fire, and mold restoration companies.',
+  path: '/market-review',
+});
 
 export default function MarketReview() {
   return (

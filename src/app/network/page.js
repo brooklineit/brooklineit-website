@@ -1,10 +1,11 @@
+import { pageMetadata } from '@/lib/metadata';
 import CTA from '@/components/CTA';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Network & Infrastructure',
   description: 'Network design, firewall management, and infrastructure support for businesses.',
-  alternates: { canonical: '/network' },
-};
+  path: '/network',
+});
 
 export default function Network() {
   return (

@@ -1,18 +1,14 @@
 import Link from 'next/link';
 import CTA from '@/components/CTA';
+import { pageMetadata } from '@/lib/metadata';
 import styles from './marketing.module.css';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Marketing for Restoration Companies',
   description: 'Google Ads, local SEO, and websites built to convert for water, fire, and mold restoration companies. Storm-triggered ad automation included. One client per market.',
-  alternates: { canonical: '/marketing' },
-  openGraph: {
-    title: 'Marketing for Restoration Companies · Brookline IT',
-    description: 'Google Ads, local SEO, and websites built to convert for restoration companies. Storm-triggered ad automation included.',
-    url: 'https://www.brooklineit.com/marketing',
-    type: 'website',
-  },
-};
+  path: '/marketing',
+  socialDescription: 'Google Ads, local SEO, and websites built to convert for restoration companies. Storm-triggered ad automation included.',
+});
 
 const serviceJsonLd = {
   '@context': 'https://schema.org',

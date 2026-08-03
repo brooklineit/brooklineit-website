@@ -3,6 +3,7 @@ import CTA from '@/components/CTA';
 export const metadata = {
   title: 'Managed IT Services',
   description: 'Brookline IT provides managed IT services for small businesses in Scranton, Wilkes-Barre, and nationwide.',
+  alternates: { canonical: '/managed-it' },
 };
 
 export default function ManagedIT() {

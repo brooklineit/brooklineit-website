@@ -3,6 +3,7 @@ import CTA from '@/components/CTA';
 export const metadata = {
   title: 'Microsoft 365 & Cloud Services',
   description: 'Microsoft 365 management, cloud migrations, and Entra ID configuration for businesses.',
+  alternates: { canonical: '/cloud' },
 };
 
 export default function Cloud() {

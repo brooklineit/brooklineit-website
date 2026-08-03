@@ -37,6 +37,8 @@ export default function Home() {
               { num: '02', href: '/cloud', title: 'Microsoft 365 & Cloud', desc: 'We deploy and manage Microsoft 365, Entra ID, SharePoint, Teams, and OneDrive — properly configured, secured, and backed up.' },
               { num: '03', href: '/cybersecurity', title: 'Cybersecurity', desc: 'Phishing defense, endpoint security, backup and recovery, and ongoing hardening. Security built into everything, not bolted on as an afterthought.' },
               { num: '04', href: '/network', title: 'Network & Infrastructure', desc: 'Fast, stable networks built to support your business. On-site support in NEPA, remote support nationwide.' },
+              { num: '05', href: '/marketing', title: 'Marketing', desc: 'Google Ads, local SEO, and websites built to convert — for restoration companies. Including storm-triggered ad automation we built ourselves.' },
+              { num: '06', href: '/voice', title: 'Phone & VoIP', desc: 'Business phone systems, VoIP, and Microsoft Teams Phone — deployed, ported, and supported.' },
             ].map(svc => (
               <Link key={svc.num} href={svc.href} className={styles.svc}>
                 <div className={styles.svcNum}>{svc.num}</div>

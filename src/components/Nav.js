@@ -17,7 +17,7 @@ export default function Nav() {
   }, []);
 
   const isActive = (path) => pathname === path;
-  const isService = ['/managed-it', '/cloud', '/cybersecurity', '/network', '/on-premises', '/voice'].includes(pathname);
+  const isService = ['/managed-it', '/cloud', '/cybersecurity', '/network', '/on-premises', '/voice', '/marketing'].includes(pathname);
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
@@ -39,6 +39,7 @@ export default function Nav() {
               <Link href="/network" onClick={() => setMenuOpen(false)}>Network &amp; Infrastructure</Link>
               <Link href="/on-premises" onClick={() => setMenuOpen(false)}>On-Site Support</Link>
               <Link href="/voice" onClick={() => setMenuOpen(false)}>Phone &amp; VoIP</Link>
+              <Link href="/marketing" onClick={() => setMenuOpen(false)}>Marketing</Link>
             </div>
           </div>
           <Link href="/what-we-build" className={`${styles.link} ${isActive('/what-we-build') ? styles.active : ''}`}>What We Build</Link>

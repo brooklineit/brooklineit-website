@@ -3,6 +3,7 @@ import CTA from '@/components/CTA';
 export const metadata = {
   title: 'What We Build',
   description: 'See the custom tools Brookline IT has built. We don\'t just manage IT, we build technology that fits your business.',
+  alternates: { canonical: '/what-we-build' },
 };
 
 function BuildItem({ title, sub, description, stats, features, featureLabel }) {

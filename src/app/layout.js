@@ -3,29 +3,43 @@ import Footer from '@/components/Footer';
 import '@/styles/globals.css';
 
 export const metadata = {
+  metadataBase: new URL('https://www.brooklineit.com'),
   title: {
     default: 'Brookline IT · Managed IT Services in Scranton, PA',
     template: '%s · Brookline IT',
   },
   description: 'Brookline IT provides managed IT services, cybersecurity, and custom-built technology for small businesses nationwide. Headquartered in Scranton, PA.',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Brookline IT · Managed IT Services',
     description: 'Managed IT services, cybersecurity, and custom-built technology for businesses. Headquartered in Scranton, PA.',
-    url: 'https://brooklineit.com',
+    url: 'https://www.brooklineit.com',
     siteName: 'Brookline IT',
     locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Brookline IT · Managed IT Services',
+    description: 'Managed IT services, cybersecurity, and custom-built technology for businesses. Headquartered in Scranton, PA.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
   },
 };
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': 'https://brooklineit.com/#business',
+  '@id': 'https://www.brooklineit.com/#business',
   name: 'Brookline IT',
-  url: 'https://brooklineit.com',
-  logo: 'https://brooklineit.com/images/logo-white.png',
-  image: 'https://brooklineit.com/images/logo-white.png',
+  url: 'https://www.brooklineit.com',
+  logo: 'https://www.brooklineit.com/images/logo-white.png',
+  image: 'https://www.brooklineit.com/images/logo-white.png',
   description:
     'Brookline IT provides managed IT services, cybersecurity, and custom-built technology for small businesses. Headquartered in Scranton, PA — serving clients nationwide.',
   email: 'contact@brooklineit.com',

@@ -3,6 +3,7 @@ import CTA from '@/components/CTA';
 export const metadata = {
   title: 'Cybersecurity',
   description: 'Cybersecurity services for small businesses. Phishing defense, endpoint protection, backup and recovery.',
+  alternates: { canonical: '/cybersecurity' },
 };
 
 export default function Cybersecurity() {

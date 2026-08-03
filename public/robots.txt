@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://brooklineit.com/sitemap.xml
+Sitemap: https://www.brooklineit.com/sitemap.xml

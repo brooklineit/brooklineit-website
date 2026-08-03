@@ -3,6 +3,7 @@ import CTA from '@/components/CTA';
 export const metadata = {
   title: 'Network & Infrastructure',
   description: 'Network design, firewall management, and infrastructure support for businesses.',
+  alternates: { canonical: '/network' },
 };
 
 export default function Network() {

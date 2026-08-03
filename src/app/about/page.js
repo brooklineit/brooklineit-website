@@ -3,6 +3,7 @@ import CTA from '@/components/CTA';
 export const metadata = {
   title: 'About',
   description: 'Founded in Scranton, PA, Brookline IT combines deep technical expertise with a human-centered approach to managed IT.',
+  alternates: { canonical: '/about' },
 };
 
 export default function About() {

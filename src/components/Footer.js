@@ -20,6 +20,7 @@ export default function Footer() {
               <li><Link href="/network">Network &amp; Infrastructure</Link></li>
               <li><Link href="/on-premises">On-Site Support</Link></li>
               <li><Link href="/voice">Phone &amp; VoIP</Link></li>
+              <li><Link href="/marketing">Marketing</Link></li>
             </ul>
           </div>
           <div>

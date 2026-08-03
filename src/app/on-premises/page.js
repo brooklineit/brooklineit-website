@@ -3,6 +3,7 @@ import CTA from '@/components/CTA';
 export const metadata = {
   title: 'On-Site IT Support',
   description: 'On-site server management, desktop support, and hardware services for Scranton-area businesses.',
+  alternates: { canonical: '/on-premises' },
 };
 
 export default function OnPremises() {

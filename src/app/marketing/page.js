@@ -241,7 +241,12 @@ export default function Marketing() {
         </div>
       </section>
 
-      <CTA />
+      <CTA
+        heading="Is your market still open?"
+        body="We take one restoration company per market. Tell us where you work and we’ll tell you straight — plus what we see in your current ads and local presence."
+        ctaText="Request a Market Review →"
+        ctaHref="/market-review"
+      />
     </>
   );
 }

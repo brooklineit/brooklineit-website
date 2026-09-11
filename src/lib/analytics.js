@@ -1,15 +1,12 @@
 /**
- * Google Analytics 4.
+ * Google Analytics 4 — property "Brookline IT" (created Sep 11 2026), web
+ * stream "brooklineit.com". The old ID G-BZT7VEHYYB belongs to STOP
+ * Restoration's property and must NOT be used here. Set this to '' to turn
+ * the tag off; trackLead() is then a no-op.
  *
- * Empty by design until Brookline IT has its own GA4 property. The old ID
- * (G-BZT7VEHYYB) was renamed to STOP Restoration's property and must NOT be
- * reused here. With this blank, no tag loads and trackLead() is a no-op.
- *
- * To turn analytics on: create a GA4 property named "Brookline IT" with a web
- * stream for www.brooklineit.com, paste its G- ID below, and deploy. Then mark
- * `generate_lead` as a key event in GA4 (Admin → Events).
+ * `generate_lead` is marked as a key event in GA4 (Admin → Key events).
  */
-export const GA_MEASUREMENT_ID = '';
+export const GA_MEASUREMENT_ID = 'G-QJ9KK4CN49';
 
 /**
  * Record a successful form submission as a GA4 `generate_lead` event.

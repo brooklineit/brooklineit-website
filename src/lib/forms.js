@@ -1,12 +1,11 @@
 /**
  * Form submission endpoint.
  *
- * NOTE: the /contact form on this site has never had a submit mechanism — no
- * action, no handler, no API route — so there was no existing destination to
- * mirror. The only proven delivery path in this repo is the Formspree endpoint
- * used by public/feedback.html, which is configured to deliver to
- * vvargas@brooklineit.com. That endpoint is reused here so submissions actually
- * arrive.
+ * Used by both site forms: /contact (Free IT Checkup) and /market-review. The
+ * /contact form shipped with no submit mechanism at all until Sep 2026, so
+ * checkup requests sent before then were silently lost. The endpoint is the
+ * same Formspree form used by public/feedback.html, which delivers to
+ * vvargas@brooklineit.com.
  *
  * To move forms to a dedicated inbox or a different provider, change this one
  * constant. Submissions are tagged via the `_subject` field (see LEAD_SUBJECTS)

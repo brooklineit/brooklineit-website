@@ -24,7 +24,7 @@ export default function About() {
             <div>
               <div className="tag">The founder</div>
               <h2>Technical depth. Human perspective.</h2>
-              <p>Brookline IT was founded by Vince, whose technical foundation was built through close mentorship under a highly respected IT professional known for designing and supporting complex business environments.</p>
+              <p>Brookline IT was founded by Vince Vargas, whose technical foundation was built through close mentorship under a highly respected IT professional known for designing and supporting complex business environments.</p>
               <p>What makes Vince&apos;s approach different is his background as a Licensed Professional Counselor. That training shapes how Brookline IT works with every client: listening carefully before prescribing solutions, explaining risks in plain language, and understanding how technology decisions affect real people inside an organization.</p>
             </div>
             <div>
@@ -55,10 +55,10 @@ export default function About() {
             <div>
               <div style={{ background: 'var(--warm-50)', borderRadius: 16, padding: 40 }}>
                 <div className="num-stat">
-                  <div className="num-stat-val">5</div>
+                  <div className="num-stat-val">6</div>
                   <div className="num-stat-unit">states served</div>
                 </div>
-                <div className="num-stat-label" style={{ marginBottom: 32 }}>PA, NC, FL, TX, CA</div>
+                <div className="num-stat-label" style={{ marginBottom: 32 }}>PA, NC, SC, FL, TX, CA</div>
                 <div className="num-stat">
                   <div className="num-stat-val">20+</div>
                   <div className="num-stat-unit">years experience</div>

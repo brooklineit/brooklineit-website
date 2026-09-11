@@ -1,5 +1,12 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import Analytics from '@/components/Analytics';
+
+// Google Business Profile ("Brookline IT, LLC"). Linking it here and in
+// sameAs helps Google tie this site to the profile rather than to the many
+// unrelated "Brookline" businesses. Add the LinkedIn company page to sameAs
+// once it exists.
+const GBP_URL = 'https://maps.google.com/?cid=3947530190270250968';
 import '@/styles/globals.css';
 
 export const metadata = {
@@ -37,7 +44,11 @@ const jsonLd = {
   '@type': 'LocalBusiness',
   '@id': 'https://www.brooklineit.com/#business',
   name: 'Brookline IT',
+  legalName: 'Brookline IT, LLC',
   url: 'https://www.brooklineit.com',
+  hasMap: GBP_URL,
+  sameAs: [GBP_URL],
+  founder: { '@type': 'Person', name: 'Vince Vargas' },
   logo: 'https://www.brooklineit.com/images/logo-white.png',
   image: 'https://www.brooklineit.com/images/logo-white.png',
   description:
@@ -82,6 +93,7 @@ export default function RootLayout({ children }) {
         <Nav />
         <main>{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

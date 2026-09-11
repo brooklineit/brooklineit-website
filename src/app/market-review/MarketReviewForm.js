@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { submitForm, LEAD_SUBJECTS } from '@/lib/forms';
+import { trackLead } from '@/lib/analytics';
 
 const SERVICES = ['Water', 'Fire', 'Smoke', 'Mold', 'Biohazard', 'Reconstruction'];
 
@@ -90,6 +91,7 @@ export default function MarketReviewForm() {
 
     if (result.ok) {
       setStatus('sent');
+      trackLead('market_review');
     } else {
       setStatus('error');
       setSubmitError(result.error);

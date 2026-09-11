@@ -48,7 +48,12 @@ const jsonLd = {
   url: 'https://www.brooklineit.com',
   hasMap: GBP_URL,
   sameAs: [GBP_URL, LINKEDIN_URL],
-  founder: { '@type': 'Person', name: 'Vince Vargas' },
+  founder: {
+    '@type': 'Person',
+    name: 'Vince Vargas',
+    jobTitle: 'Founder',
+    image: 'https://www.brooklineit.com/images/vince-vargas.jpg',
+  },
   logo: 'https://www.brooklineit.com/images/logo-white.png',
   image: 'https://www.brooklineit.com/images/logo-white.png',
   description:

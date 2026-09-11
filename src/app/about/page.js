@@ -1,4 +1,5 @@
 import { pageMetadata } from '@/lib/metadata';
+import Image from 'next/image';
 import CTA from '@/components/CTA';
 
 export const metadata = pageMetadata({
@@ -22,6 +23,14 @@ export default function About() {
         <div className="wrap">
           <div className="two-col">
             <div>
+              <figure style={{ display: 'flex', alignItems: 'center', gap: 20, margin: '0 0 32px' }}>
+                <Image src="/images/vince-vargas.jpg" alt="Vince Vargas, founder of Brookline IT"
+                  width={112} height={112} style={{ borderRadius: '50%', objectFit: 'cover' }} priority />
+                <figcaption>
+                  <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--warm-800)' }}>Vince Vargas</div>
+                  <div style={{ fontSize: 14, color: 'var(--warm-400)', marginTop: 2 }}>Founder, Brookline IT</div>
+                </figcaption>
+              </figure>
               <div className="tag">The founder</div>
               <h2>Technical depth. Human perspective.</h2>
               <p>Brookline IT was founded by Vince Vargas, whose technical foundation was built through close mentorship under a highly respected IT professional known for designing and supporting complex business environments.</p>

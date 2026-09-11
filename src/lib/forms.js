@@ -1,15 +1,15 @@
 /**
- * Form submission endpoint.
+ * Form submission.
  *
- * Used by both site forms: /contact (Free IT Checkup) and /market-review. The
- * /contact form shipped with no submit mechanism at all until Sep 2026, so
- * checkup requests sent before then were silently lost. The endpoint is the
- * same Formspree form used by public/feedback.html, which delivers to
- * vvargas@brooklineit.com.
+ * - /contact (Free IT Checkup) → Netlify Forms, form "it-checkup", emailed to
+ *   contact@brooklineit.com. Declared in public/__forms.html. Only works when
+ *   the site is served by Netlify. The /contact form shipped with no submit
+ *   mechanism at all until Sep 2026, so earlier checkup requests were lost.
+ * - /market-review and public/feedback.html → Formspree (FORM_ENDPOINT),
+ *   delivered to vvargas@brooklineit.com.
  *
- * To move forms to a dedicated inbox or a different provider, change this one
- * constant. Submissions are tagged via the `_subject` field (see LEAD_SUBJECTS)
- * so marketing leads are distinguishable from IT leads in the inbox.
+ * Submissions are tagged via the subject field (see LEAD_SUBJECTS) so
+ * marketing leads are distinguishable from IT leads in the inbox.
  */
 export const FORM_ENDPOINT = 'https://formspree.io/f/xeebzpwz';
 
@@ -43,6 +43,24 @@ export async function submitForm(payload) {
       /* non-JSON error body — keep the generic message */
     }
     return { ok: false, error: message };
+  } catch {
+    return { ok: false, error: 'Network error. Please check your connection and try again.' };
+  }
+}
+
+/**
+ * POST fields to a Netlify form declared in public/__forms.html.
+ * Returns { ok: true } or { ok: false, error: string }.
+ */
+export async function submitNetlifyForm(formName, fields) {
+  try {
+    const res = await fetch('/__forms.html', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ 'form-name': formName, ...fields }).toString(),
+    });
+    if (res.ok) return { ok: true };
+    return { ok: false, error: 'Something went wrong sending your request. Please call us instead.' };
   } catch {
     return { ok: false, error: 'Network error. Please check your connection and try again.' };
   }

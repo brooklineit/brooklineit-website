@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+  Netlify Forms registry. Never shown to visitors.
+
+  Netlify only detects forms in static HTML at deploy time, and the Next.js
+  runtime serves pages dynamically, so every Netlify form is declared here and
+  the React components POST to /__forms.html (see submitNetlifyForm in
+  src/lib/forms.js). Field names here must match what the component sends.
+
+  Email notifications are configured in Netlify: Forms → Form notifications.
+  it-checkup → contact@brooklineit.com
+-->
+<html>
+  <body>
+    <form name="it-checkup" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="it-checkup" />
+      <input type="hidden" name="subject" />
+      <input name="bot-field" />
+      <input name="name" />
+      <input name="company" />
+      <input name="email" type="email" />
+      <input name="phone" />
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>

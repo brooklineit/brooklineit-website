@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { submitForm, LEAD_SUBJECTS } from '@/lib/forms';
+import { submitNetlifyForm, LEAD_SUBJECTS } from '@/lib/forms';
 import { trackLead } from '@/lib/analytics';
 
 const EMPTY = { name: '', company: '', email: '', phone: '', message: '' };
@@ -38,9 +38,8 @@ export default function ContactForm() {
     setStatus('sending');
     setSubmitError('');
 
-    const result = await submitForm({
-      _subject: LEAD_SUBJECTS.itCheckup,
-      leadType: 'Free IT Checkup — Contact Form',
+    const result = await submitNetlifyForm('it-checkup', {
+      subject: LEAD_SUBJECTS.itCheckup,
       name: values.name,
       company: values.company || '(not provided)',
       email: values.email,

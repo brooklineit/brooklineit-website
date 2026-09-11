@@ -36,6 +36,7 @@ export default function Footer() {
             <ul>
               <li><a href="mailto:contact@brooklineit.com">contact@brooklineit.com</a></li>
               <li><a href="tel:5703444900">570.344.4900</a></li>
+              <li><a href="https://www.linkedin.com/company/brookline-it/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
               <li className={styles.loc}>Scranton, PA (HQ)</li>
               <li className={styles.loc}>Serving clients nationwide</li>
             </ul>

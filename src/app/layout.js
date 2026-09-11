@@ -2,11 +2,11 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Analytics from '@/components/Analytics';
 
-// Google Business Profile ("Brookline IT, LLC"). Linking it here and in
-// sameAs helps Google tie this site to the profile rather than to the many
-// unrelated "Brookline" businesses. Add the LinkedIn company page to sameAs
-// once it exists.
+// Google Business Profile ("Brookline IT, LLC") and LinkedIn company page.
+// Listing them in sameAs helps Google tie this site to our profiles rather
+// than to the many unrelated "Brookline" businesses.
 const GBP_URL = 'https://maps.google.com/?cid=3947530190270250968';
+const LINKEDIN_URL = 'https://www.linkedin.com/company/brookline-it/';
 import '@/styles/globals.css';
 
 export const metadata = {
@@ -47,7 +47,7 @@ const jsonLd = {
   legalName: 'Brookline IT, LLC',
   url: 'https://www.brooklineit.com',
   hasMap: GBP_URL,
-  sameAs: [GBP_URL],
+  sameAs: [GBP_URL, LINKEDIN_URL],
   founder: { '@type': 'Person', name: 'Vince Vargas' },
   logo: 'https://www.brooklineit.com/images/logo-white.png',
   image: 'https://www.brooklineit.com/images/logo-white.png',

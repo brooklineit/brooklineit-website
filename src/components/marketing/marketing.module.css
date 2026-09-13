@@ -53,7 +53,7 @@
 /* Results stat row */
 .stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   padding: 36px 0;
   border-top: 1px solid var(--warm-100);

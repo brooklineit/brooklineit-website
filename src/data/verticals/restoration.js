@@ -1,5 +1,6 @@
 import { restorationCaseStats } from '@/data/case-stats';
 import { restorationTestimonials } from '@/data/testimonials';
+import { GOOGLE_REVIEWS_URL } from '@/data/reviews';
 
 /**
  * Vertical config for /marketing (restoration).
@@ -113,9 +114,14 @@ export const restorationVertical = {
   results: {
     tag: 'Results',
     heading: 'What this looks like in practice',
-    intro: 'From a restoration company in the Carolinas we\'ve managed since late 2025. These figures come from their live Google Ads account.',
+    intro: 'One account, before and after. Every figure below was pulled from STOP Restoration of the Carolinas\' live Google Ads account and site analytics on September 12, 2026 — not from a case-study PDF.',
     stats: restorationCaseStats,
     callout: (
+      <>
+        <strong>The storm test, July 2026:</strong> a flash-flood warning hit the Charlotte area on a Tuesday. The system drafted the budget increase, storm ad copy, and a Google post that day; the owner approved them. Wednesday, a homeowner with a flooded basement found the new campaign, filled in the estimate form, and booked the job — on roughly <strong>$19 of incremental ad spend</strong>.
+      </>
+    ),
+    secondaryCallout: (
       <>
         In another market, a rebuilt Local Services profile and three new Search campaigns produced <strong>more ad impressions in 12 days than the previous seven and a half months combined</strong> — achieved by fixing configuration, not by spending more.
       </>
@@ -123,6 +129,7 @@ export const restorationVertical = {
     fallbackNote: 'Client references available on request.',
     disclaimer: 'These are individual results in specific markets — we won\'t promise you identical numbers. What you get is the same system and the same transparency.',
     testimonials: restorationTestimonials,
+    reviewsUrl: GOOGLE_REVIEWS_URL,
   },
 
   whoThisIsFor: {

@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import CTA from '@/components/CTA';
+import Testimonial from '@/components/Testimonial';
+import { googleReviews, GOOGLE_REVIEWS_URL } from '@/data/reviews';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -93,6 +95,24 @@ export default function Home() {
               <div key={v.name} className={styles.vertPill}>{v.name} <span className={styles.vertSub}>· {v.sub}</span></div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="content" style={{ background: 'var(--white)' }}>
+        <div className="wrap">
+          <div style={{ textAlign: 'center', maxWidth: 560, margin: '0 auto 40px' }}>
+            <div className="tag">In our clients&apos; words</div>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(30px, 4vw, 44px)', fontWeight: 700, color: 'var(--warm-800)', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: 14 }}>What it&apos;s like to work with us</h2>
+            <p style={{ color: 'var(--warm-400)', fontSize: 16 }}>Every quote below was posted publicly by the client on our Google Business Profile.</p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20, alignItems: 'start' }}>
+            {googleReviews.map((r, i) => (
+              <Testimonial key={i} {...r} />
+            ))}
+          </div>
+          <p style={{ textAlign: 'center', fontSize: 14, marginTop: 28, marginBottom: 0, maxWidth: 'none' }}>
+            <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer">Read our reviews on Google &rarr;</a>
+          </p>
         </div>
       </section>
 

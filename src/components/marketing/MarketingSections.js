@@ -122,7 +122,7 @@ export function PillarGrid({ pillars }) {
   );
 }
 
-export function ResultsSection({ tag, heading, intro, stats, callout, disclaimer, fallbackNote, testimonials = [], whoThisIsFor }) {
+export function ResultsSection({ tag, heading, intro, stats, callout, secondaryCallout, disclaimer, fallbackNote, testimonials = [], reviewsUrl, whoThisIsFor }) {
   return (
     <section className="content">
       <div className="wrap">
@@ -145,6 +145,11 @@ export function ResultsSection({ tag, heading, intro, stats, callout, disclaimer
           <p style={{ maxWidth: 'none', marginBottom: 8 }}>
             {callout}
           </p>
+          {secondaryCallout && (
+            <p style={{ maxWidth: 'none', marginBottom: 8 }}>
+              {secondaryCallout}
+            </p>
+          )}
           <p style={{ fontSize: 13, color: 'var(--warm-400)', maxWidth: 'none', marginBottom: 0 }}>
             {testimonials.length === 0 && `${fallbackNote} `}
             {disclaimer}
@@ -157,6 +162,12 @@ export function ResultsSection({ tag, heading, intro, stats, callout, disclaimer
               <Testimonial key={i} {...t} />
             ))}
           </div>
+        )}
+
+        {reviewsUrl && (
+          <p style={{ fontSize: 14, marginBottom: 40 }}>
+            <a href={reviewsUrl} target="_blank" rel="noopener noreferrer">Read our reviews on Google &rarr;</a>
+          </p>
         )}
 
         <WhoThisIsFor {...whoThisIsFor} />

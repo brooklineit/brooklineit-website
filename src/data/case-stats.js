@@ -43,3 +43,36 @@ export const restorationCaseStats = [
     label: 'Negative keywords now filtering junk, DIY, and competitor clicks out of the account',
   },
 ];
+
+/**
+ * Second case study on /marketing — a restoration company in Charleston, SC.
+ *
+ * ⚠️ Published ANONYMOUSLY at the client's request: name the market, never the
+ * company or the franchise brand. Their service agreement (§13) makes
+ * performance data confidential; the client approved this use on Sep 12 2026.
+ *
+ * Receipts, pulled Sep 12 2026:
+ *   BEFORE — their own Local Services account, Dec 1 2025 – Jul 18 2026
+ *     baseline (archived screenshot): 758 impressions (~3.3/day), 1 charged
+ *     phone lead, $128.52 of media. No Search campaigns existed on the account.
+ *   AFTER — GAQL, Aug 1 – Sep 11 2026: 5,803 impressions, 313 clicks,
+ *     $3,562.67, 15 conversions across C#1 Water (2,203/99/10),
+ *     C#2 Mold (2,992/160/4), C#4 Fire (200/11/1), C#3 Brand (8/0/0) and the
+ *     rebuilt Local Services campaign (400 impressions, 43 clicks).
+ *   SITE — Netlify form 6a5e45850c33f50008e3908f: 17 submissions since
+ *     Jul 20 2026. GA4 property 546262048: 819 sessions in 90 days.
+ */
+export const charlestonCase = {
+  label: 'A restoration company in Charleston, SC',
+  beforeLabel: 'Before us',
+  beforePeriod: 'Dec 2025 – Jul 2026 · 7½ months',
+  afterLabel: 'With us',
+  afterPeriod: 'Aug 1 – Sep 11, 2026 · 6 weeks',
+  rows: [
+    { metric: 'Ad impressions', before: '758', after: '5,803' },
+    { metric: 'Recorded leads from ads', before: '1', after: '15' },
+    { metric: 'Search campaigns running', before: 'None', after: '4, plus a rebuilt Local Services profile' },
+    { metric: 'Their own website', before: 'A corporate page they did not control', after: '17 form leads since it launched' },
+  ],
+  note: 'They are spending more now — about $3,600 in that six-week window, against almost nothing before. That is the point: the budget had been sitting idle in a misconfigured account. Rebuilding it is what turned spend into impressions, clicks, and recorded leads.',
+};

@@ -122,7 +122,38 @@ export function PillarGrid({ pillars }) {
   );
 }
 
-export function ResultsSection({ tag, heading, intro, stats, callout, secondaryCallout, disclaimer, fallbackNote, testimonials = [], reviewsUrl, whoThisIsFor }) {
+export function BeforeAfterCase({ label, beforeLabel, beforePeriod, afterLabel, afterPeriod, rows = [], note }) {
+  return (
+    <div style={{ marginBottom: 40 }}>
+      <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--warm-800)', marginBottom: 16 }}>{label}</h3>
+      <div className={styles.baCard}>
+        <div className={styles.baHead}>
+          <div />
+          <div>
+            <div className={styles.baHeadLabel}>{beforeLabel}</div>
+            <div className={styles.baHeadPeriod}>{beforePeriod}</div>
+          </div>
+          <div>
+            <div className={styles.baHeadLabel}>{afterLabel}</div>
+            <div className={styles.baHeadPeriod}>{afterPeriod}</div>
+          </div>
+        </div>
+        {rows.map((r, i) => (
+          <div key={i} className={styles.baRow}>
+            <div className={styles.baMetric}>{r.metric}</div>
+            <div className={styles.baBefore}>{r.before}</div>
+            <div className={styles.baAfter}>{r.after}</div>
+          </div>
+        ))}
+      </div>
+      {note && (
+        <p style={{ fontSize: 13, color: 'var(--warm-400)', maxWidth: 'none' }}>{note}</p>
+      )}
+    </div>
+  );
+}
+
+export function ResultsSection({ tag, heading, intro, statsLabel, stats, callout, beforeAfter, disclaimer, fallbackNote, testimonials = [], reviewsUrl, whoThisIsFor }) {
   return (
     <section className="content">
       <div className="wrap">
@@ -131,6 +162,10 @@ export function ResultsSection({ tag, heading, intro, stats, callout, secondaryC
           <h2>{heading}</h2>
           <p>{intro}</p>
         </div>
+
+        {statsLabel && (
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--warm-800)', marginBottom: 4 }}>{statsLabel}</h3>
+        )}
 
         <div className={styles.stats}>
           {stats.map((s, i) => (
@@ -141,15 +176,13 @@ export function ResultsSection({ tag, heading, intro, stats, callout, secondaryC
           ))}
         </div>
 
+        {beforeAfter && <BeforeAfterCase {...beforeAfter} />}
+
         <div className="callout" style={{ marginBottom: 40 }}>
           <p style={{ maxWidth: 'none', marginBottom: 8 }}>
             {callout}
           </p>
-          {secondaryCallout && (
-            <p style={{ maxWidth: 'none', marginBottom: 8 }}>
-              {secondaryCallout}
-            </p>
-          )}
+
           <p style={{ fontSize: 13, color: 'var(--warm-400)', maxWidth: 'none', marginBottom: 0 }}>
             {testimonials.length === 0 && `${fallbackNote} `}
             {disclaimer}

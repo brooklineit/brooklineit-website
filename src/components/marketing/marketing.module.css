@@ -83,3 +83,39 @@
 @media (max-width: 520px) {
   .stats { grid-template-columns: 1fr; }
 }
+
+/* Before/after case study table */
+.baCard {
+  border: 1px solid var(--warm-100);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+.baHead {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--warm-50);
+  border-bottom: 1px solid var(--warm-100);
+}
+.baHeadLabel { font-size: 13px; font-weight: 700; color: var(--warm-800); }
+.baHeadPeriod { font-size: 12px; color: var(--warm-400); margin-top: 2px; }
+.baRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--warm-100);
+  align-items: baseline;
+}
+.baRow:last-child { border-bottom: 0; }
+.baMetric { font-size: 14px; color: var(--warm-700); }
+.baBefore { font-size: 15px; color: var(--warm-400); }
+.baAfter { font-size: 15px; font-weight: 700; color: var(--green-600); }
+@media (max-width: 700px) {
+  .baHead { display: none; }
+  .baRow { grid-template-columns: 1fr; gap: 4px; padding: 14px 18px; }
+  .baBefore::before { content: 'Before: '; color: var(--warm-400); font-weight: 400; }
+  .baAfter::before { content: 'With us: '; color: var(--warm-400); font-weight: 400; }
+}

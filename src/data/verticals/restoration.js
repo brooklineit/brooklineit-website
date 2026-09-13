@@ -3,7 +3,7 @@ import { restorationTestimonials } from '@/data/testimonials';
 import { GOOGLE_REVIEWS_URL } from '@/data/reviews';
 
 /**
- * Vertical config for /marketing (restoration).
+ * Vertical config for /marketing/restoration.
  *
  * This is the only config today. To add a sibling vertical page (e.g.
  * /marketing/roofing), copy this file, change the copy and proof, and render
@@ -19,7 +19,7 @@ export const restorationVertical = {
       'Google Ads, local SEO, and websites built to convert for water, fire, and mold restoration companies. Storm-triggered ad automation included. One client per market.',
     socialDescription:
       'Google Ads, local SEO, and websites built to convert for restoration companies. Storm-triggered ad automation included.',
-    path: '/marketing',
+    path: '/marketing/restoration',
   },
 
   hero: {
@@ -147,7 +147,7 @@ export const restorationVertical = {
   jsonLd: {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    '@id': 'https://www.brooklineit.com/marketing#service',
+    '@id': 'https://www.brooklineit.com/marketing/restoration#service',
     name: 'Marketing for Restoration Companies',
     serviceType: 'Digital Marketing for Restoration Contractors',
     description:

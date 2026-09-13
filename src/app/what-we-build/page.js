@@ -80,7 +80,7 @@ export default function WhatWeBuild() {
               stats={[{ val: '24/7', label: 'NWS alert monitoring' }, { val: '~1 hr', label: 'From alert to drafted response' }, { val: 'Approve', label: 'Required before any spend' }]}
               featureLabel="What we built"
               features={['County-level National Weather Service alert monitoring', 'Automatic budget, ad copy, and post drafting', 'Approve-to-act — the system proposes, a human decides', 'Baseline capture so every surge can be reverted', 'Runs on our own infrastructure, not a vendor dashboard']}
-              href="/marketing"
+              href="/marketing/restoration"
               linkText="See how it fits our restoration marketing"
             />
             <BuildItem

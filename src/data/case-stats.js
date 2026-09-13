@@ -74,5 +74,4 @@ export const charlestonCase = {
     { metric: 'Search campaigns running', before: 'None', after: '4, plus a rebuilt Local Services profile' },
     { metric: 'Their own website', before: 'A corporate page they did not control', after: '17 form leads since it launched' },
   ],
-  note: 'They are spending more now — about $3,600 in that six-week window, against almost nothing before. That is the point: the budget had been sitting idle in a misconfigured account. Rebuilding it is what turned spend into impressions, clicks, and recorded leads.',
 };

@@ -5,7 +5,7 @@
  * attribution in the body sans below a hairline rule — same warm-50 panel
  * treatment used by the sidebar cards on the service pages.
  */
-export default function Testimonial({ quote, name, title, company, city }) {
+export default function Testimonial({ quote, name, title, company, city, source }) {
   const attribution = [title, company].filter(Boolean).join(', ');
 
   return (
@@ -26,6 +26,9 @@ export default function Testimonial({ quote, name, title, company, city }) {
         )}
         {city && (
           <div style={{ fontSize: 13, color: 'var(--green-600)', marginTop: 2 }}>{city}</div>
+        )}
+        {source && (
+          <div style={{ fontSize: 12, color: 'var(--warm-400)', marginTop: 8 }}>{source}</div>
         )}
       </figcaption>
     </figure>

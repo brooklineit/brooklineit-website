@@ -8,6 +8,12 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  async redirects() {
+    return [
+      // Legacy path still being requested (seen in Netlify's 404 log, Sep 2026).
+      { source: '/on-premises-support', destination: '/on-premises', permanent: true },
+    ]
+  },
   async rewrites() {
     return [
       { source: '/feedback', destination: '/feedback.html' },

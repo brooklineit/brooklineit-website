@@ -52,18 +52,21 @@ export default async function ViewsPage({ searchParams }) {
   const records = await listViews();
   const byCode = new Map(records.map((r) => [r.code, r]));
 
-  // Every recipient on the list, opened or not, so silence is visible too;
-  // then any code that isn't on the list (an old or mistyped link).
-  const rows = [
-    ...Object.entries(RECIPIENTS).map(([code, name]) => byCode.get(code) ?? { code, name, opens: 0, reads: 0 }),
-    ...records.filter((r) => !(r.code in RECIPIENTS)),
-  ].sort((a, b) => {
+  // Every recipient on the list, opened or not, so silence is visible too,
+  // most recent activity first. Test links and any code that isn't on the list
+  // (an old or mistyped link) go underneath and don't count toward the totals.
+  const byRecent = (a, b) => {
     if (!!b.lastOpen !== !!a.lastOpen) return b.lastOpen ? 1 : -1;
     return String(b.lastOpen ?? '').localeCompare(String(a.lastOpen ?? ''));
-  });
+  };
+  const listed = Object.entries(RECIPIENTS)
+    .map(([code, name]) => ({ opens: 0, reads: 0, ...byCode.get(code), code, name }))
+    .sort(byRecent);
+  const other = records.filter((r) => !(r.code in RECIPIENTS)).sort(byRecent);
+  const rows = [...listed, ...other];
 
-  const opened = rows.filter((r) => r.opens > 0).length;
-  const readThrough = rows.filter((r) => r.reads > 0).length;
+  const opened = listed.filter((r) => r.opens > 0).length;
+  const readThrough = listed.filter((r) => r.reads > 0).length;
 
   const th = {
     textAlign: 'left',

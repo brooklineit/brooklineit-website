@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { pageMetadata } from '@/lib/metadata';
+import BuiltTracker from '@/components/BuiltTracker';
 import s from './report.module.css';
 
 export const metadata = pageMetadata({
@@ -142,6 +143,7 @@ function System({ num, id, title, cadence, body, moment }) {
 export default function Built() {
   return (
     <div className={`${s.sheet} report-sheet`}>
+      <BuiltTracker />
       <header className={s.masthead}>
         <Link href="/" aria-label="Brookline IT">
           <Image
@@ -273,7 +275,7 @@ export default function Built() {
       ))}
 
       <div className={s.sectionHead}>
-        <h2 className={s.sectionTitle}>Why we did this</h2>
+        <h2 className={s.sectionTitle} id="why-we-did-this">Why we did this</h2>
         <div className={s.sectionRule} />
       </div>
 

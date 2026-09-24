@@ -1,0 +1,396 @@
+/* Web version of the printed client report ("Built, not bought", Sept 2026).
+   Deliberately not the marketing-page look: this mirrors the PDF's document
+   layout — one column, hairline rules, mono labels, a black stat band. */
+
+.sheet {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 48px) 40px 96px;
+}
+@media (max-width: 768px) {
+  .sheet { padding: calc(var(--nav-h) + 28px) 24px 64px; }
+}
+
+/* ── Masthead ─────────────────────────────────────────────────────── */
+.masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--warm-200);
+}
+.mastheadMeta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--warm-400);
+  text-align: right;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+.logo { width: 200px; height: auto; }
+@media (max-width: 560px) {
+  .masthead { align-items: center; }
+  .logo { width: 150px; }
+  .mastheadMeta { font-size: 9px; }
+}
+
+/* ── Eyebrow (green dash + mono label) ────────────────────────────── */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-600);
+  margin: 44px 0 18px;
+}
+.eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 2px;
+  background: var(--green-600);
+  flex-shrink: 0;
+}
+.eyebrowMuted { color: var(--warm-400); }
+.eyebrowMuted::before { background: var(--warm-300); }
+
+/* ── Title block ──────────────────────────────────────────────────── */
+.title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 7vw, 60px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--warm-800);
+  margin-bottom: 14px;
+}
+.title em { font-style: normal; color: var(--green-600); }
+
+.deck {
+  font-size: clamp(17px, 2.4vw, 20px);
+  color: var(--warm-400);
+  margin-bottom: 26px;
+}
+
+.intro {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--warm-600);
+  max-width: 780px;
+}
+
+/* ── Black stat band ──────────────────────────────────────────────── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--warm-800);
+  border-radius: 10px;
+  margin: 36px 0 12px;
+  overflow: hidden;
+}
+.stat {
+  padding: 30px 16px;
+  text-align: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+.stat:first-child { border-left: none; }
+.statVal {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4.6vw, 42px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.statLabel {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warm-300);
+  margin-top: 10px;
+  line-height: 1.6;
+}
+@media (max-width: 640px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(3) { border-left: none; }
+  .stat:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, 0.12); }
+}
+
+/* ── Contents index ───────────────────────────────────────────────── */
+.index {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* Fill down the left column first (01–04), then the right (05–08), the way
+     the printed contents page reads. */
+  grid-template-rows: repeat(4, auto);
+  grid-auto-flow: column;
+  column-gap: 48px;
+}
+@media (max-width: 700px) {
+  .index { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; column-gap: 0; }
+}
+
+.indexRow {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--warm-100);
+  color: inherit;
+}
+a.indexRow:hover .indexTitle { color: var(--green-600); }
+.indexNum {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--warm-300);
+  flex-shrink: 0;
+}
+.indexTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--warm-800);
+  flex: 1;
+  transition: color 0.15s;
+}
+.indexCadence {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-600);
+  white-space: nowrap;
+}
+
+/* ── "One ordinary day" timeline ──────────────────────────────────── */
+.timeline {
+  border: 1px solid var(--warm-200);
+  border-radius: 12px;
+  padding: clamp(20px, 3vw, 32px);
+  margin-top: 40px;
+  background: var(--white);
+}
+.timelineTitle {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--warm-800);
+  letter-spacing: -0.02em;
+}
+.timelineSub { font-size: 14px; color: var(--warm-400); margin: 6px 0 22px; }
+
+.trackRow {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+.trackLabel { font-size: 13px; color: var(--warm-600); }
+.track {
+  position: relative;
+  height: 14px;
+  /* Quarter-day gridlines, matching the 12 AM / 6 AM / NOON / 6 PM / 12 AM axis. */
+  background-image: linear-gradient(to right, var(--warm-200) 1px, transparent 1px);
+  background-size: 25% 100%;
+  border-right: 1px solid var(--warm-200);
+}
+.bar {
+  position: absolute;
+  top: 3px;
+  height: 8px;
+  background: var(--warm-800);
+  border-radius: 4px;
+}
+/* The one short bar of the day reads as a smudge in black; green marks it as
+   deliberate, as it is in the printed report. */
+.barAccent { background: var(--green-500); border-radius: 2px; }
+.axis {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 16px;
+  margin-top: 6px;
+}
+.axisMarks {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--warm-400);
+}
+.timelineNote {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--warm-500);
+  margin-top: 20px;
+}
+@media (max-width: 640px) {
+  .trackRow, .axis { grid-template-columns: 104px 1fr; gap: 10px; }
+  .trackLabel { font-size: 11px; }
+}
+
+/* ── Section rule ("The tools" / "Why we did this") ───────────────── */
+.sectionHead {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 64px 0 8px;
+}
+.sectionTitle {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.4vw, 30px);
+  font-weight: 700;
+  color: var(--warm-800);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.sectionRule { flex: 1; height: 1px; background: var(--warm-200); }
+.sectionMeta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warm-400);
+  white-space: nowrap;
+}
+@media (max-width: 640px) { .sectionMeta { display: none; } }
+
+/* ── A system entry ───────────────────────────────────────────────── */
+.system {
+  padding: 34px 0;
+  border-top: 1px solid var(--warm-100);
+  scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+.systemHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.systemNum {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--warm-300);
+}
+.systemTitle {
+  font-size: clamp(18px, 2.4vw, 21px);
+  font-weight: 700;
+  color: var(--warm-800);
+  letter-spacing: -0.01em;
+}
+.pill {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-700);
+  background: var(--green-50);
+  border: 1px solid var(--green-200);
+  border-radius: 999px;
+  padding: 5px 14px;
+}
+.systemBody {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--warm-600);
+  max-width: 780px;
+}
+.moment {
+  background: var(--white);
+  border: 1px solid var(--warm-100);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 20px 0 0 36px;
+  max-width: 720px;
+}
+@media (max-width: 640px) { .moment { margin-left: 0; } }
+.momentLabel {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-600);
+  margin-bottom: 8px;
+}
+.momentText { font-size: 14.5px; line-height: 1.7; color: var(--warm-500); }
+
+/* ── Dark inset block (access & accountability) ───────────────────── */
+.dark {
+  background: var(--warm-800);
+  border-radius: 16px;
+  padding: clamp(28px, 4.5vw, 48px);
+  margin: 40px 0;
+}
+.dark .eyebrow { margin-top: 0; color: var(--green-400); }
+.dark .eyebrow::before { background: var(--green-400); }
+.darkTitle {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.4vw, 32px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.darkText {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--warm-300);
+  margin-bottom: 16px;
+}
+.darkText:last-child { margin-bottom: 0; }
+
+/* ── Closing ──────────────────────────────────────────────────────── */
+.closing { font-size: 15.5px; line-height: 1.75; color: var(--warm-600); max-width: 780px; margin-bottom: 16px; }
+
+.callBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  background: var(--warm-800);
+  border-radius: 12px;
+  padding: clamp(24px, 3.5vw, 34px) clamp(24px, 4vw, 40px);
+  margin-top: 36px;
+}
+.callBarTitle {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 27px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.callBarContact {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--green-400);
+  text-align: right;
+  line-height: 2;
+}
+.callBarContact a { display: block; color: var(--green-400); }
+.callBarContact a:hover { color: var(--white); }
+@media (max-width: 640px) { .callBarContact { text-align: left; } }
+
+/* ── Report footer rule ───────────────────────────────────────────── */
+.colophon {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--warm-200);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warm-400);
+}

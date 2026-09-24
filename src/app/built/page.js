@@ -1,5 +1,7 @@
-import { pageMetadata } from '@/lib/metadata';
+import Image from 'next/image';
 import Link from 'next/link';
+import { pageMetadata } from '@/lib/metadata';
+import s from './report.module.css';
 
 export const metadata = pageMetadata({
   title: 'Built, not bought',
@@ -11,11 +13,14 @@ export const metadata = pageMetadata({
     'The tools behind the quiet, and why we built them ourselves. A report for Brookline IT clients, September 2026.',
 });
 
-/* The eight systems, in the order they appear in the September 2026 client report. */
+/* The eight systems, in report order. `short` is the contents-index cadence,
+   `cadence` the fuller one on the entry itself. */
 const SYSTEMS = [
   {
     num: '01',
+    id: 'night-shift',
     title: 'Night Shift',
+    short: 'Nightly',
     cadence: 'Runs 1 AM, every night',
     body:
       'A technician that does rounds while your building is dark. Every server every night, every computer every week: disk space, backups, crashed services, protection status. Routine problems are fixed on the spot from a strict safe list. Anything bigger is waiting in our queue with the evidence attached before you have had coffee.',
@@ -24,7 +29,9 @@ const SYSTEMS = [
   },
   {
     num: '02',
+    id: 'second-tech',
     title: 'Second Tech',
+    short: 'Every 30 min',
     cadence: 'Every 30 minutes, 7 AM to 7 PM',
     body:
       'Every new request is investigated by our tools before a person reads it. It pulls the machine’s history, the account’s sign-ins, and past tickets, then runs a second pass whose only job is to argue with the first one. Nothing gets written down as a fact unless a tool proved it. We start from evidence, not a guess.',
@@ -33,7 +40,9 @@ const SYSTEMS = [
   },
   {
     num: '03',
+    id: 'security-watch',
     title: 'Security Watch',
+    short: 'Every 15 min',
     cadence: 'Every 15 minutes, all day, all night',
     body:
       'Antivirus watches your computer. This watches your accounts. Across every Microsoft account we manage it looks for sign-ins from places you have never been, bursts of outgoing mail that look like a hijacked mailbox, and sign-ins from addresses with a bad reputation. It also runs a daily posture check on the whole company for the settings attackers love to find left open.',
@@ -42,7 +51,9 @@ const SYSTEMS = [
   },
   {
     num: '04',
+    id: 'phish-line',
     title: 'The Phish Line',
+    short: '24/7',
     cadence: 'Answers in minutes, 24/7',
     body:
       'Report a suspicious email and you get a plain-English verdict back, usually within minutes, day or night. Safe, spam, or phishing, and what to do. It also coaches your team when they press the wrong button, because releasing a real phish from quarantine is the mistake that hurts. If your team does not have this yet, we are rolling it out to every client.',
@@ -51,16 +62,20 @@ const SYSTEMS = [
   },
   {
     num: '05',
+    id: 'console',
     title: 'The Console',
+    short: 'Always on',
     cadence: '100+ tools, one screen, works from a phone',
     body:
-      'This is the one built around how we work. We built a single control room that reaches every client’s Microsoft accounts, every managed computer, the networks we manage, and every ticket. From a phone, we can lock a compromised account, reset its sign-in, pull its history, trace an email, and run a script on any computer in your building. No laptop, no VPN, no “let me get back to the office.”',
+      'This is the one built around how we work. We built a single control room that reaches every client’s Microsoft accounts, every managed computer, the networks we manage, and every ticket. From a phone, we can lock a compromised account, reset its sign-in, pull its history, trace an email, and run a script on any computer in your building. No laptop, no VPN, no ‘let me get back to the office.’',
     moment:
       'A fake invoice for a serious sum landed in a client’s accounts payable inbox, written to look like the owner had already approved it. We pulled it, swept every other mailbox in the company for copies, and blocked the sender, all the same day, without touching a single computer in the office.',
   },
   {
     num: '06',
+    id: 'heartbeat',
     title: 'Server & Backup Heartbeat',
+    short: 'Every 15 min',
     cadence: 'Every 15 minutes',
     body:
       'Every server we manage is checked around the clock for one thing, is it still talking to us, and every night for another, did last night’s backup actually run and finish. Not a green light in a vendor console. The job itself, on the server, in the last 24 hours.',
@@ -69,15 +84,19 @@ const SYSTEMS = [
   },
   {
     num: '07',
+    id: 'promise-tracker',
     title: 'The Promise Tracker',
+    short: '3× a day',
     cadence: '3 times a day, every weekday',
     body:
-      'If we tell you “I’ll get back to you tomorrow,” a system reads that sentence and holds us to it. Overdue promises are surfaced to us before you have to chase. It even has a check on itself, so it cannot go quiet without us knowing.',
-    moment: 'It is the reason a “we’ll check in 48 hours” actually gets checked in 48 hours.',
+      'If we tell you ‘I’ll get back to you tomorrow,’ a system reads that sentence and holds us to it. Overdue promises are surfaced to us before you have to chase. It even has a check on itself, so it cannot go quiet without us knowing.',
+    moment: 'It is the reason a ‘we’ll check in 48 hours’ actually gets checked in 48 hours.',
   },
   {
     num: '08',
+    id: 'patch-engine',
     title: 'The Patch Engine',
+    short: 'Daily — monthly',
     cadence: 'Daily, weekly, monthly lanes',
     body:
       'Security fixes go out daily, application updates weekly, and everything else monthly, on a schedule your team never notices. Servers have their own lane on Sunday mornings, outside working hours. Even in a record month like this September, it was just another Tuesday.',
@@ -87,209 +106,199 @@ const SYSTEMS = [
 ];
 
 const STATS = [
-  { val: '7', label: 'Systems we built ourselves' },
-  { val: '100+', label: 'Tools in our control room' },
-  { val: '15 min', label: 'How often your accounts are checked' },
-  { val: '365', label: 'Nights a year of rounds' },
+  { val: '7', label: 'Systems we built\nourselves' },
+  { val: '100+', label: 'Tools in our\ncontrol room' },
+  { val: '15 min', label: 'How often your\naccounts are checked' },
+  { val: '365', label: 'Nights a year\nof rounds' },
 ];
 
-function System({ num, title, cadence, body, moment }) {
+/* Bars are placed as a percentage of a 24-hour day. */
+const DAY = [
+  { label: 'Security Watch', start: 0, end: 24 },
+  { label: 'Server & Backup Heartbeat', start: 0, end: 24 },
+  { label: 'The Phish Line', start: 0, end: 24 },
+  { label: 'The Console', start: 0, end: 24 },
+  { label: 'Second Tech', start: 7, end: 19 },
+  { label: 'Night Shift', start: 1, end: 1.6, accent: true },
+];
+
+function System({ num, id, title, cadence, body, moment }) {
   return (
-    <article
-      style={{
-        background: 'var(--white)',
-        border: '1px solid var(--warm-100)',
-        borderRadius: 16,
-        padding: 'clamp(24px, 4vw, 40px)',
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, flexWrap: 'wrap', marginBottom: 6 }}>
-        <span
-          style={{
-            fontFamily: 'var(--mono)',
-            fontSize: 13,
-            fontWeight: 500,
-            color: 'var(--green-600)',
-            letterSpacing: '0.04em',
-          }}
-        >
-          {num}
-        </span>
-        <h2
-          style={{
-            fontFamily: 'var(--serif)',
-            fontSize: 'clamp(22px, 3vw, 28px)',
-            fontWeight: 700,
-            color: 'var(--warm-800)',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.15,
-            margin: 0,
-          }}
-        >
-          {title}
-        </h2>
+    <section className={s.system} id={id}>
+      <div className={s.systemHead}>
+        <span className={s.systemNum}>{num}</span>
+        <h2 className={s.systemTitle}>{title}</h2>
+        <span className={s.pill}>{cadence}</span>
       </div>
-
-      <div
-        className="tag"
-        style={{ color: 'var(--warm-400)', marginBottom: 16 }}
-      >
-        {cadence}
+      <p className={s.systemBody}>{body}</p>
+      <div className={s.moment}>
+        <div className={s.momentLabel}>Real moment</div>
+        <p className={s.momentText}>{moment}</p>
       </div>
-
-      <p style={{ maxWidth: 'none', marginBottom: 24 }}>{body}</p>
-
-      <div
-        style={{
-          background: 'var(--warm-50)',
-          borderRadius: 12,
-          padding: 'clamp(18px, 3vw, 24px)',
-          borderLeft: '3px solid var(--green-500)',
-        }}
-      >
-        <div className="tag" style={{ marginBottom: 8 }}>
-          Real moment
-        </div>
-        <p style={{ maxWidth: 'none', marginBottom: 0, fontSize: 15 }}>{moment}</p>
-      </div>
-    </article>
+    </section>
   );
 }
 
 export default function Built() {
   return (
-    <>
-      <section className="page-hero">
-        <div className="wrap">
-          <div className="tag">For our clients &middot; September 2026</div>
-          <h1>Built, not bought.</h1>
-          <p>The tools behind the quiet, and why we built them ourselves.</p>
+    <div className={`${s.sheet} report-sheet`}>
+      <header className={s.masthead}>
+        <Link href="/" aria-label="Brookline IT">
+          <Image
+            className={s.logo}
+            src="/images/logo-dark.png"
+            alt="Brookline IT"
+            width={240}
+            height={48}
+            priority
+          />
+        </Link>
+        <div className={s.mastheadMeta}>
+          For our clients
+          <br />
+          September 2026
         </div>
-      </section>
+      </header>
 
-      <section className="content" style={{ paddingBottom: 40 }}>
-        <div className="wrap">
-          <p style={{ fontSize: 18, color: 'var(--warm-500)' }}>
-            Most IT companies run the same three things: a ticket system, an antivirus, and a patching
-            tool, all rented from the same vendors. We started there too. Then we built our own on top of
-            them, because the off-the-shelf ones kept missing things. What follows is the current list. It
-            is why you rarely have to call us.
-          </p>
+      <div className={s.eyebrow}>Scranton, PA &nbsp;&middot;&nbsp; What runs for you</div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-              gap: 32,
-              marginTop: 48,
-              paddingTop: 40,
-              borderTop: '1px solid var(--warm-100)',
-            }}
-          >
-            {STATS.map((s) => (
-              <div key={s.label}>
-                <div
-                  style={{
-                    fontFamily: 'var(--serif)',
-                    fontSize: 'clamp(32px, 5vw, 44px)',
-                    fontWeight: 700,
-                    color: 'var(--green-600)',
-                    letterSpacing: '-0.04em',
-                    lineHeight: 1,
-                  }}
-                >
-                  {s.val}
-                </div>
-                <div style={{ fontSize: 13, color: 'var(--warm-400)', marginTop: 8 }}>{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <h1 className={s.title}>
+        Built, <em>not bought.</em>
+      </h1>
+      <p className={s.deck}>The tools behind the quiet, and why we built them ourselves.</p>
+      <p className={s.intro}>
+        Most IT companies run the same three things: a ticket system, an antivirus, and a patching tool,
+        all rented from the same vendors. We started there too. Then we built our own on top of them,
+        because the off-the-shelf ones kept missing things. What follows is the current list. It is why you
+        rarely have to call us.
+      </p>
 
-      <section className="content" style={{ paddingTop: 40 }}>
-        <div className="wrap">
-          <div className="tag">Eight systems, running now</div>
-          <div style={{ display: 'grid', gap: 24, marginTop: 24 }}>
-            {SYSTEMS.slice(0, 5).map((s) => (
-              <System key={s.num} {...s} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="content" style={{ background: 'var(--white)' }}>
-        <div className="wrap">
-          <div className="tag">Access &amp; accountability</div>
-          <h2>Who can actually use this?</h2>
-          <p>
-            Only us, and only through a passkey. A passkey is a cryptographic key stored in the secure chip
-            of a registered device, unlocked by a face or a fingerprint. It is not a password, so it is
-            extremely hard to phish and cannot be guessed or reused. Someone would need our physical phone
-            or laptop, unlocked, and our face. A stolen device on its own gets nothing, and we can cut off
-            any device in seconds.
-          </p>
-          <p>
-            No client passwords or keys live on our devices. Our own access keys sit on encrypted disks
-            behind hardware-bound sign-in. The device is a window into a server, and the server does the
-            work. That is why we are not stuck behind a laptop to fix something: a problem reported at 4 PM
-            on a Friday gets handled from wherever we are, with the same tools and the same protections,
-            usually before the person who reported it has logged off.
-          </p>
-          <p>
-            Every change we make in your Microsoft environment lands in your own audit log under a named
-            identity that you granted and can revoke at any time, through Microsoft&apos;s delegated-admin
-            system. Every privileged action on our side is logged as well. Our automated tools handle
-            routine work from a strict safe list. They cannot touch passwords, sign-in methods or anything
-            destructive. Those need a person, and they are logged.
-          </p>
-        </div>
-      </section>
-
-      <section className="content">
-        <div className="wrap">
-          <div style={{ display: 'grid', gap: 24 }}>
-            {SYSTEMS.slice(5).map((s) => (
-              <System key={s.num} {...s} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="content" style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="callout">
-            <div className="tag">Why we did this</div>
-            <h3>Quiet should never mean invisible.</h3>
-            <p>
-              The monitoring in this report used to require a security team and a budget to match. We built
-              it so our clients get it without either. Every one of these tools exists because something
-              once slipped past the store-bought version. We do not intend to let it slip twice. If you ever
-              want to see what ran for you in a given month, ask and we will show you.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="page-cta" style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="page-cta-box">
-            <h2>When something feels off, call us first.</h2>
-            <p>We would rather hear about it early than clean it up later.</p>
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a className="btn btn-dark" href="tel:+15703444900">
-                570-344-4900
-              </a>
-              <a className="btn btn-ghost" href="mailto:helpdesk@brooklineit.com">
-                helpdesk@brooklineit.com
-              </a>
+      <div className={s.stats}>
+        {STATS.map((st) => (
+          <div className={s.stat} key={st.label}>
+            <div className={s.statVal}>{st.val}</div>
+            <div className={s.statLabel} style={{ whiteSpace: 'pre-line' }}>
+              {st.label}
             </div>
-            <p style={{ marginTop: 28, marginBottom: 0, fontSize: 14 }}>
-              Not a client yet? <Link href="/contact" style={{ color: 'var(--green-600)', fontWeight: 500 }}>Talk to us</Link>.
-            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className={`${s.eyebrow} ${s.eyebrowMuted}`}>In this report</div>
+      <nav className={s.index}>
+        {SYSTEMS.map((sys) => (
+          <a className={s.indexRow} href={`#${sys.id}`} key={sys.num}>
+            <span className={s.indexNum}>{sys.num}</span>
+            <span className={s.indexTitle}>{sys.title}</span>
+            <span className={s.indexCadence}>{sys.short}</span>
+          </a>
+        ))}
+      </nav>
+
+      <div className={s.timeline}>
+        <h2 className={s.timelineTitle}>One ordinary day, watched</h2>
+        <p className={s.timelineSub}>When each system is running, midnight to midnight.</p>
+
+        {DAY.map((row) => (
+          <div className={s.trackRow} key={row.label}>
+            <div className={s.trackLabel}>{row.label}</div>
+            <div className={s.track}>
+              <div
+                className={`${s.bar}${row.accent ? ` ${s.barAccent}` : ''}`}
+                style={{
+                  left: `${(row.start / 24) * 100}%`,
+                  width: `${((row.end - row.start) / 24) * 100}%`,
+                }}
+              />
+            </div>
+          </div>
+        ))}
+
+        <div className={s.axis}>
+          <div />
+          <div className={s.axisMarks}>
+            <span>12 AM</span>
+            <span>6 AM</span>
+            <span>Noon</span>
+            <span>6 PM</span>
+            <span>12 AM</span>
           </div>
         </div>
-      </section>
-    </>
+
+        <p className={s.timelineNote}>
+          Four of the eight are watching at every hour of every day. The Promise Tracker checks three times
+          a day on weekdays, and The Patch Engine runs its daily, weekly and monthly lanes &mdash; those
+          three keep a calendar rather than a clock.
+        </p>
+      </div>
+
+      <div className={s.sectionHead}>
+        <h2 className={s.sectionTitle}>The tools</h2>
+        <div className={s.sectionRule} />
+        <div className={s.sectionMeta}>Eight systems, running now</div>
+      </div>
+
+      {SYSTEMS.slice(0, 5).map((sys) => (
+        <System key={sys.num} {...sys} />
+      ))}
+
+      <div className={s.dark}>
+        <div className={s.eyebrow}>Access &amp; accountability</div>
+        <h2 className={s.darkTitle}>Who can actually use this?</h2>
+        <p className={s.darkText}>
+          Only us, and only through a passkey. A passkey is a cryptographic key stored in the secure chip
+          of a registered device, unlocked by a face or a fingerprint. It is not a password, so it is
+          extremely hard to phish and cannot be guessed or reused. Someone would need our physical phone or
+          laptop, unlocked, and our face. A stolen device on its own gets nothing, and we can cut off any
+          device in seconds.
+        </p>
+        <p className={s.darkText}>
+          No client passwords or keys live on our devices. Our own access keys sit on encrypted disks
+          behind hardware-bound sign-in. The device is a window into a server, and the server does the
+          work. That is why we are not stuck behind a laptop to fix something: a problem reported at 4 PM
+          on a Friday gets handled from wherever we are, with the same tools and the same protections,
+          usually before the person who reported it has logged off.
+        </p>
+        <p className={s.darkText}>
+          Every change we make in your Microsoft environment lands in your own audit log under a named
+          identity that you granted and can revoke at any time, through Microsoft&apos;s delegated-admin
+          system. Every privileged action on our side is logged as well. Our automated tools handle routine
+          work from a strict safe list. They cannot touch passwords, sign-in methods or anything
+          destructive. Those need a person, and they are logged.
+        </p>
+      </div>
+
+      {SYSTEMS.slice(5).map((sys) => (
+        <System key={sys.num} {...sys} />
+      ))}
+
+      <div className={s.sectionHead}>
+        <h2 className={s.sectionTitle}>Why we did this</h2>
+        <div className={s.sectionRule} />
+      </div>
+
+      <p className={s.closing} style={{ marginTop: 18 }}>
+        The monitoring in this report used to require a security team and a budget to match. We built it so
+        our clients get it without either. Every one of these tools exists because something once slipped
+        past the store-bought version. We do not intend to let it slip twice.
+      </p>
+      <p className={s.closing}>
+        Quiet should never mean invisible. If you ever want to see what ran for you in a given month, ask
+        and we will show you.
+      </p>
+
+      <div className={s.callBar}>
+        <div className={s.callBarTitle}>When something feels off, call us first.</div>
+        <div className={s.callBarContact}>
+          <a href="tel:+15703444900">570-344-4900</a>
+          <a href="mailto:helpdesk@brooklineit.com">helpdesk@brooklineit.com</a>
+        </div>
+      </div>
+
+      <div className={s.colophon}>
+        <Link href="/">brooklineit.com</Link>
+        <span>helpdesk@brooklineit.com &nbsp;&middot;&nbsp; 570-344-4900</span>
+      </div>
+    </div>
   );
 }

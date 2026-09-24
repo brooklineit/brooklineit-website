@@ -193,3 +193,9 @@ img { max-width: 100%; display: block; }
 .checkbox-item.is-checked { border-color: var(--green-500); background: var(--green-50); }
 @media (max-width: 640px) { .checkbox-grid { grid-template-columns: repeat(2, 1fr); } }
 .form-group textarea { resize: vertical; min-height: 140px; }
+
+/* Report pages (/built) are standalone documents: the site nav and footer are
+   hidden so the page reads like the printed report it mirrors. The masthead
+   logo links home in their place. */
+body:has(.report-sheet) > nav,
+body:has(.report-sheet) > footer { display: none; }
